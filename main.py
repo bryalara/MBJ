@@ -56,6 +56,18 @@ class Profile(ndb.Model):
 class MakeProfile(webapp2.RequestHandler):
     def post(self):
         name = self.request.get('name')
+        education = self.request.get('education')
+        objective = self.request.get('objective')
+        career = self.request.get('career')
+
+        template = env.get_template('profile.html')
+        my_vars = {
+            name = 'name',
+            education = 'education',
+            objective = 'objective',
+            career = 'career',
+        }
+        self.response.out.write(template.render(my_vars))
 
 
 
