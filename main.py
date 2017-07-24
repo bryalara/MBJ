@@ -46,16 +46,31 @@ class MakeComment(webapp2.RequestHandler):
 
 
 class Profile(ndb.Model):
-    def get(self):
-        name = ndb.StringProperty(indexed=True)
-        education = ndb.StringProperty(indexed=True)
-        objective = ndb.StringProperty(indexed=True)
-        career = ndb.StringProperty(indexed=True)
-        #username is the key to refer to a specific profilekop
+    name = ndb.StringProperty(indexed=True)
+    education = ndb.StringProperty(indexed=True)
+    objective = ndb.StringProperty(indexed=True)
+    career = ndb.StringProperty(indexed=True)
+    #username is the key to refer to a specific profilekop
 
 class MakeProfile(webapp2.RequestHandler):
+    def get(self):
+        #name = Profile.get('name')
+        name = ""
+        education = ""
+        objective = ""
+        career = ""
+
+        template = env.get_template('profile.html')
+        my_vars = {
+            'name': name,
+            'education': education,
+            'objective': objective,
+            'career': career
+        }
+        self.response.out.write(template.render(my_vars))
+
     def post(self):
-        profile_key = ndb.Key('Profile', self.request.get('name'))
+        profile_key = ndb.Key('Profile', self.request.get('name')) #changet ot he email
         profile = profile_key.get()
 
         if not profile:
@@ -66,16 +81,7 @@ class MakeProfile(webapp2.RequestHandler):
                 career = self.request.get('career'))
             profile.key = profile_key
             profile.put()
-
-        template = env.get_template('profile.html')
-        my_vars = {
-            'name': name,
-            'education': education,
-            'objective': objective,
-            'career': career
-        }
-        self.response.out.write(template.render(my_vars))
-        self.redirect('/')
+        self.redirect('/make_profile')
 
 
 app = webapp2.WSGIApplication([

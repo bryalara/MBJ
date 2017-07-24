@@ -4,7 +4,7 @@
   <title>Profile</title>
 </head>
 <body>
-  <a href="main.html" title="Main Page">Main Page</a>
+  <a href="/" title="Main Page">Main Page</a>
   {% for profile in profiles %}
     <li>{{profile.name}}</li>
   {% endfor %}
@@ -17,12 +17,12 @@
         <a href = "{{log_url}}">login</a></p>
   {% endif %}
   {{cur_user}}
-  <form method="get" action="">
+  <form method="post" action="">  <!-- if the method is a get, shows up in URL. post posts to the database, in this case -->
     <h4>Name:<input type='text' name='name'></h4>
-    <h4>Education:<input type="text"name='education'></h4>
-    <h4>Objective:<input type="text"name='objective'></h4>
-    <h4>Career:<input type="text"name='career'></h4>
-    <input type="submit" value="Create Profile"></input>
+    <h4>Education:<input type='text' name='education'></h4>
+    <h4>Objective:<input type='text' name='objective'></h4>
+    <h4>Career:<input type='text' name='career'></h4>
+    <input type='submit' value='Create Profile'></input>
   </form>
 
 </body>
