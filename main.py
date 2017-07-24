@@ -62,10 +62,10 @@ class MakeProfile(webapp2.RequestHandler):
 
         template = env.get_template('profile.html')
         my_vars = {
-            name = 'name',
-            education = 'education',
-            objective = 'objective',
-            career = 'career',
+            'name': name,
+            'career': career,
+            'education': education,
+            'objective': objective,
         }
         self.response.out.write(template.render(my_vars))
 
