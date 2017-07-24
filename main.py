@@ -23,6 +23,7 @@ class MakeComment(webapp2.RequestHandler):
 
 class Profile(ndb.Model):
     def get(self):
+        #username is the key to refer to a specific profilekop
 
 class MakeProfile(webapp2.RequestHandler):
     def post(self):
