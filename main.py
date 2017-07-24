@@ -5,6 +5,7 @@ import urllib2
 from google.appengine.api import users
 from google.appengine.ext import ndb
 import jinja2
+import os
 
 env=jinja2.Environment(
     loader=jinja2.FileSystemLoader(
