@@ -66,6 +66,15 @@ class MakeProfile(webapp2.RequestHandler):
                 career = self.request.get('career'))
             profile.key = profile_key
             profile.put()
+
+        template = env.get_template('profile.html')
+        my_vars = {
+            'name': name,
+            'education': education,
+            'objective': objective,
+            'career': career
+        }
+        self.response.out.write(template.render(my_vars))
         self.redirect('/')
 
 
