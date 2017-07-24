@@ -49,6 +49,7 @@ class Profile(ndb.Model):
     def get(self):
         #username is the key to refer to a specific profilekop
         pass
+
 class MakeProfile(webapp2.RequestHandler):
     def post(self):
         pass
