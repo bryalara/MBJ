@@ -1,13 +1,13 @@
 html {
-  color: white
+  color: gray
 }
 
 body {
-  background-color: #fff476;
+  background-color: white;
 }
 
 h1 {
-color: #8f98ff;
+color: gray;
 font-size: 500%;
 margin: 20px;
 background-color: white;
