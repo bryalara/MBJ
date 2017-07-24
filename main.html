@@ -4,20 +4,20 @@
   <link rel="stylesheet" href="resources/main.css">
 </head>
 <body>
-  <h1><i>BRIDGE</i></h1>
-  <br>
   {% if user %}
       <p>Hello, {{user.nickname()}}
         <a href = "{{log_url}}">logout</a></p>
   {% else %}
-      <p>Hello, random person!
-        <a href = "{{log_url}}">login</a></p>
+      <p>Hello, random person login
+        <a href = "{{log_url}}">here!</a></p>
   {% endif %}
+    <a href="./profile.html" title="Profile Page">Click here to make your profile Page</a>
 
-  <a href="./profile.html" title="Profile Page">Profile Page</a>
-  <center><p><i> Welcome to BRIDGE where our mission is to level the
+    <div>
+  <h1><i>BRIDGE</i></h1></div>
+  <center><p><i><strong> Welcome to BRIDGE where our mission is to level the
      educational and career-related playing fields by increasing accessibility
-     to mentorship regarding both professional and personal matters.</i></p></center>
+     to mentorship regarding both professional and personal matters.</strong></i></p></center>
      <br>
   <center><img src="resources/business-meeting.jpg" width="600px" length="400px"/></center>
 
