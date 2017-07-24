@@ -14,11 +14,21 @@ class MainPage(webapp2.RequestHandler):
 
 
 class Comment(ndb.Model):
-    def get(self):
+    name= ndb.StringProperty()
+    comment = ndb.StringProperty
 
 class MakeComment(webapp2.RequestHandler):
     def post(self):
-
+        comment_key = ndb.Key("Comment", self.request.get("comment"))
+        comment= comment_key.get()
+        if not comment:
+            comment = Comment(
+            name= self.request.get("name"),
+            comment= self.request.get("comment")
+            )
+            comment.key= comment_key
+            comment.put()
+        self.redirect("/")
 
 
 class Profile(ndb.Model):
