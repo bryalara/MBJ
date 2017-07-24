@@ -2,6 +2,8 @@ import webapp2
 import logging
 import urllib #allows you to make communcation to the outside world (to call the https)
 import urllib2
+from google.appengine.api import users
+from google.appengine.ext import ndb
 import jinja2
 
 env=jinja2.Environment(
@@ -10,7 +12,17 @@ env=jinja2.Environment(
 
 class MainPage(webapp2.RequestHandler):
     def get(self):
+        cur_user = users.get_current_user()
+        log_url = ''
+        if cur_user:
+            log_url = users.create_logout_url('/')
+        else:
+            log_url = users.create_login_url('/')
 
+        my_vars = {
+            'user': cur_user,
+            'log_url': log_url,
+        }
 
 
 class Comment(ndb.Model):
