@@ -47,12 +47,16 @@ class MakeComment(webapp2.RequestHandler):
 
 class Profile(ndb.Model):
     def get(self):
+        name = ndb.StringProperty(indexed=True)
+        education = ndb.StringProperty(indexed=True)
+        objective = ndb.StringProperty(indexed=True)
+        career = ndb.StringProperty(indexed=True)
         #username is the key to refer to a specific profilekop
-        pass
 
 class MakeProfile(webapp2.RequestHandler):
     def post(self):
-        pass
+        name = self.request.get('name')
+
 
 
 app = webapp2.WSGIApplication([
