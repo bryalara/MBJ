@@ -4,6 +4,16 @@
   <title>Profile</title>
 </head>
 <body>
-
+  {% if user %}
+      <p>Hello, {{user.nickname()}}
+        <a href = "{{log_url}}">logout</a></p>
+  {% else %}
+      <p>Hello, random person!
+        <a href = "{{log_url}}">login</a></p>
+  {% endif %}
+  {{cur_user}}
+  <form method="post" action="">
+    <h4>Name:<input type='text' name='name'></h4>
+  </form>
 </body>
 </html>
