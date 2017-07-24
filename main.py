@@ -18,12 +18,13 @@ class MainPage(webapp2.RequestHandler):
             log_url = users.create_logout_url('/')
         else:
             log_url = users.create_login_url('/')
-
+            
+        template = env.get_template('main.html')
         my_vars = {
             'user': cur_user,
             'log_url': log_url,
         }
-
+        self.response.out.write(template.render(my_vars))
 
 class Comment(ndb.Model):
     name= ndb.StringProperty()
