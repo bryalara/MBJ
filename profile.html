@@ -5,6 +5,10 @@
 </head>
 <body>
   <a href="main.html" title="Main Page">Main Page</a>
+  {% for profile in profiles %}
+    <li>{{profile.name}}</li>
+  {% endfor %}
+
   {% if user %}
       <p>Hello, {{user.nickname()}}
         <a href = "{{log_url}}">logout</a></p>
@@ -13,11 +17,13 @@
         <a href = "{{log_url}}">login</a></p>
   {% endif %}
   {{cur_user}}
-  <form method="post" action="">
+  <form method="get" action="">
     <h4>Name:<input type='text' name='name'></h4>
     <h4>Education:<input type="text"name='education'></h4>
     <h4>Objective:<input type="text"name='objective'></h4>
     <h4>Career:<input type="text"name='career'></h4>
+    <input type="submit" value="Create Profile"></input>
   </form>
+
 </body>
 </html>
