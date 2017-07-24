@@ -20,10 +20,14 @@ class MainPage(webapp2.RequestHandler):
         else:
             log_url = users.create_login_url('/')
 
-        template = env.get_template('main.html')
+        template = env.get_template('profile.html')
         my_vars = {
             'user': cur_user,
             'log_url': log_url,
+            'name': name,
+            'career': career,
+            'education': education,
+            'objective': objective,
         }
         self.response.out.write(template.render(my_vars))
 
@@ -55,20 +59,19 @@ class Profile(ndb.Model):
 
 class MakeProfile(webapp2.RequestHandler):
     def post(self):
-        name = self.request.get('name')
-        education = self.request.get('education')
-        objective = self.request.get('objective')
-        career = self.request.get('career')
 
-        template = env.get_template('profile.html')
-        my_vars = {
-            'name': name,
-            'career': career,
-            'education': education,
-            'objective': objective,
-        }
-        self.response.out.write(template.render(my_vars))
+        profile_key = ndb.Key('Profile', self.request.get('name'))
+        profile = profile_key.get()
 
+        if not profile:
+            profile = Profile(
+                name = self.request.get('name')
+                education = self.request.get('education')
+                objective = self.request.get('objective')
+                career = self.request.get('career'))
+         profile.key = profile_key
+         profile.put()
+         self.redirect('/')
 
 
 app = webapp2.WSGIApplication([
