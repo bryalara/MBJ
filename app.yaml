@@ -3,12 +3,12 @@ api_version: 1
 threadsafe: true
 service: default
 
-handlers:
-- url: /.*
-  script: main.app
 
+handlers:
 - url: /resources
   static_dir: resources
+- url: /.*
+  script: main.app
 
 libraries:
 - name: jinja2
