@@ -18,7 +18,7 @@ class MainPage(webapp2.RequestHandler):
             log_url = users.create_logout_url('/')
         else:
             log_url = users.create_login_url('/')
-            
+
         template = env.get_template('main.html')
         my_vars = {
             'user': cur_user,
@@ -47,10 +47,11 @@ class MakeComment(webapp2.RequestHandler):
 class Profile(ndb.Model):
     def get(self):
         #username is the key to refer to a specific profilekop
+        pass
 
 class MakeProfile(webapp2.RequestHandler):
     def post(self):
-
+        pass
 
 
 app = webapp2.WSGIApplication([
