@@ -20,7 +20,7 @@ class MainPage(webapp2.RequestHandler):
         else:
             log_url = users.create_login_url('/')
 
-        template = env.get_template('profile.html')
+        template = env.get_template('main.html')
         my_vars = {
             'user': cur_user,
             'log_url': log_url,
