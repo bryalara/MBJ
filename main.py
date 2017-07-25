@@ -72,7 +72,7 @@ class SearchPage(webapp2.RequestHandler):
 
         query = profile.query()
         result_list = query.fetch()
-        logging.info("@@@@@@@@#####" + str(result_list))
+        #logging.info("@@@@@@@@#####" + str(result_list))
         template = env.get_template('search.html')
         my_vars = {
             'result_list': result_list
