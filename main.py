@@ -42,7 +42,10 @@ class MakeComment(webapp2.RequestHandler):
             )
             comment.key= comment_key
             comment.put()
-        self.redirect("/make_comment")
+            my_vars = {
+            
+            }
+
     def get(self):
         template= env.get_template("comment.html")
         self.response.out.write(template.render())
