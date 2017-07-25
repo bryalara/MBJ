@@ -108,7 +108,7 @@ class MakeProfile(webapp2.RequestHandler):
 class MainPage(webapp2.RequestHandler):
     def get(self):
         template = env.get_template('mainpage.html')
-
+        self.response.out.write(template.render())
 
 
 app = webapp2.WSGIApplication([
