@@ -11,25 +11,6 @@ env=jinja2.Environment(
     loader=jinja2.FileSystemLoader(
         os.path.dirname(__file__)))
 
-class Searching(ndb.Model):
-    name = ndb.StringProperty(indexed=True)
-    education = ndb.StringProperty(indexed=True)
-    objective = ndb.StringProperty(indexed=True)
-    career = ndb.StringProperty(indexed=True)
-
-class SearchPage(webapp2.RequestHandler):
-    #this method needs to have a search bar in every page -> done in html file
-    #once you press enter, will redirect to the search.html -> done in html files
-    #
-    def get(self):
-
-        template = env.get_template('search.html')
-        my_vars = {
-            'results': results,
-            'search_term': search_term
-        }
-        self.response.out.write(template.render(my_vars))
-
 class LoginPage(webapp2.RequestHandler):
     def get(self):
         cur_user = users.get_current_user()
@@ -63,6 +44,44 @@ class MakeComment(webapp2.RequestHandler):
             comment.put()
         self.redirect("/")
 
+def ActuallySearching(property):
+    user = users.get_current_user()
+    profile_key = ndb.Key('Profile', user.nickname()) #.nickname returns the email
+    profile = profile_key.get()
+
+    if profile:
+        return profile(property)
+        self.redirect('/results_page')
+
+class SearchPage(webapp2.RequestHandler):
+    def get(self):
+        name = ""
+        template = env.get_template('search.html')
+        my_vars = {
+            'name': name
+        }
+        self.response.out.write(template.render(my_vars))
+    #this method needs to have a search bar in every page -> done in html file
+    #once you press enter, will redirect to the search.html -> done in html files
+    def post(self):
+        #logging.info("@@@@@@ in post")
+        name = self.request.get('name')
+        interesting = ActuallySearching(name)
+        template = env.get_template('search.html')
+        my_vars = {
+            'interesting': interesting
+        }
+        self.response.out.write(template.render())
+        self.redirect('/results_page')
+
+class ResultsPage(webapp2.RequestHandler):
+    def get(self):
+        interesting = ActuallySearching(name)
+        template = env.get_template('results.html')
+        my_vars = {
+            'interesting': interesting
+        }
+        self.response.out.write(template.render())
 
 class Profile(ndb.Model):
     name = ndb.StringProperty(indexed=True)
@@ -121,5 +140,6 @@ app = webapp2.WSGIApplication([
     ('/make_profile', MakeProfile),
     ('/make_comment', MakeComment),
     ('/main_page', MainPage),
-    ('/search_page', SearchPage)
+    ('/search_page', SearchPage),
+    ('results_page', ResultsPage)
 ], debug=True)
