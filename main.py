@@ -105,6 +105,9 @@ class MakeProfile(webapp2.RequestHandler):
         profile.put()
         self.redirect('/make_profile')
 
+
+
+
 class MainPage(webapp2.RequestHandler):
     def get(self):
         template = env.get_template('mainpage.html')
