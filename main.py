@@ -43,7 +43,7 @@ class MakeComment(webapp2.RequestHandler):
             comment.key= comment_key
             comment.put()
         self.redirect("/")
-
+"""
 def ActuallySearching(property):
     user = users.get_current_user()
     profile_key = ndb.Key('Profile', user.nickname()) #.nickname returns the email
@@ -51,7 +51,7 @@ def ActuallySearching(property):
 
     if profile:
         return profile(property)
-        self.redirect('/results_page')
+        self.redirect('/results_page')"""
 
 class SearchPage(webapp2.RequestHandler):
     def get(self):
@@ -66,17 +66,21 @@ class SearchPage(webapp2.RequestHandler):
     def post(self):
         #logging.info("@@@@@@ in post")
         name = self.request.get('name')
-        interesting = ActuallySearching(name)
+        user = users.get_current_user()
+        profile_key = ndb.Key('Profile', user.nickname()) #.nickname returns the email
+        profile = profile_key.get()
+
+        query = profile.query()
+        result_list = query.fetch()
+        logging.info("@@@@@@@@#####" + str(result_list))
         template = env.get_template('search.html')
         my_vars = {
-            'interesting': interesting
+            'result_list': result_list
         }
-        self.response.out.write(template.render())
-        self.redirect('/results_page')
+        self.response.out.write(template.render(my_vars))
 
 class ResultsPage(webapp2.RequestHandler):
     def get(self):
-        interesting = ActuallySearching(name)
         template = env.get_template('results.html')
         my_vars = {
             'interesting': interesting
