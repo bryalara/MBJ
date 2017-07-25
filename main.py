@@ -11,7 +11,7 @@ env=jinja2.Environment(
     loader=jinja2.FileSystemLoader(
         os.path.dirname(__file__)))
 
-class MainPage(webapp2.RequestHandler):
+class LoginPage(webapp2.RequestHandler):
     def get(self):
         cur_user = users.get_current_user()
         log_url = ''
@@ -20,7 +20,7 @@ class MainPage(webapp2.RequestHandler):
         else:
             log_url = users.create_login_url('/')
 
-        template = env.get_template('main.html')
+        template = env.get_template('login.html')
         my_vars = {
             'user': cur_user,
             'log_url': log_url,
@@ -60,7 +60,7 @@ class MakeProfile(webapp2.RequestHandler):
         objective = ""
         career = ""
 
-        template = env.get_template('profile.html')
+        template = env.get_template('makeprofile.html')
         my_vars = {
             'name': name,
             'education': education,
@@ -85,7 +85,7 @@ class MakeProfile(webapp2.RequestHandler):
 
 
 app = webapp2.WSGIApplication([
-    ('/', MainPage),
+    ('/', LoginPage),
     ('/make_profile', MakeProfile),
     ('/make_comment', MakeComment),
 ], debug=True)
