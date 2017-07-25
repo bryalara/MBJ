@@ -2,8 +2,16 @@
 <html>
   <head>
     <title>Profile</title>
+    <link rel="stylesheet" href="resources/login.css">
+    <link rel="stylesheet"
+           href="https://fonts.googleapis.com/css?family=Poppins">
+    <link rel="stylesheet"
+           href="https://fonts.googleapis.com/css?family=Rubik">
   </head>
   <body>
-
+    {% if user %}
+      <p>Hello, {{user.nickname()}}
+    {% endif %}
+    
   </body>
 </html>

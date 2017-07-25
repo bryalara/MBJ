@@ -3,14 +3,24 @@ html {
 }
 
 body {
-  background-color: white;
+  background-color: #F5F5F5;
+  font-family: 'Rubik', sans-serif;
 }
 
 h1 {
+font-family: 'Poppins', sans-serif;
 color: gray;
 font-size: 500%;
 margin: 0px;
-background-color: white;
+background-color: #D4F6D6;
 text-align: center;
 padding: 0px;
+}
+
+#creators{
+  background-color: #81DC87;
+}
+input.mysubmitbutton{
+    font-family: 'Rubik', sans-serif;
+    src: url("https://fonts.googleapis.com/css?family=Rubik");
 }
