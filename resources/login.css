@@ -11,19 +11,19 @@ body {
 }
 #objective{
   position: absolute;
-  bottom: 50;
+  bottom: 200px;
+  left:0px;
   font-size: 150%;
-  padding: 50px;
-  background-color: blue;
+  padding: 30px;
+  background-color: #FFFFF0;
   opacity: 0.7;
-  border-radius: 25px;
-  margin: 75px;
+
 }
 
 
 h1 {
 position:absolute;
-top: 500;
+top: 200px;
 left: 0;
 font-family: 'Poppins', sans-serif;
 color: #1A1E1A;
@@ -75,8 +75,8 @@ opacity: 0.7;
   position: absolute;
   bottom: 0;
   right: 0;
-  background-color: #81DC87;
-  opacity: 0.5;
+  background-color: #FFFFF0;
+  opacity: 0.7;
 }
 input.mysubmitbutton{
     font-family: 'Rubik', sans-serif;
