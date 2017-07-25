@@ -116,4 +116,5 @@ app = webapp2.WSGIApplication([
     ('/make_profile', MakeProfile),
     ('/make_comment', MakeComment),
     ('/main_page', MainPage),
+    ('/search_page', Search)
 ], debug=True)
