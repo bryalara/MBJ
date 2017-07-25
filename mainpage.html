@@ -9,6 +9,17 @@
            href="https://fonts.googleapis.com/css?family=Rubik">
   </head>
   <body>
+  <div class="sidebar">
+     <ul>
+       <li><a href="/">Home</a> </li>
+       <li><a href="/">Profile</a> </li>
+     </ul>
+     <button class="sidebarBtn">
+       <span> </span>
+     </button>
+  </div>
+
+
       <p>Hello,
     {% if user %}
      {{user.nickname()}}
