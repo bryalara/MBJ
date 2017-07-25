@@ -82,7 +82,7 @@ class SearchPage(webapp2.RequestHandler):
         my_vars = {
             'result_list': result_list
         }
-        self.response.out.write(template.render(my_vars))
+        self.response.out.write(template.render(my_vars)) #make the answers show up on results.html
 
 class ResultsPage(webapp2.RequestHandler):
     def get(self):
