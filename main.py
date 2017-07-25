@@ -11,6 +11,27 @@ env=jinja2.Environment(
     loader=jinja2.FileSystemLoader(
         os.path.dirname(__file__)))
 
+class Searching(ndb.Model):
+    name = ndb.StringProperty(indexed=True)
+    education = ndb.StringProperty(indexed=True)
+    objective = ndb.StringProperty(indexed=True)
+    career = ndb.StringProperty(indexed=True)
+
+class Search(webapp2.RequestHandler):
+    def get(self):
+        search_term = self.request.get('search_term')
+        if cur_user:
+            query = Searching.query(
+                ancestor = ndb.Key('Profile', search_term))
+            results = query.fetch()
+
+        template = env.get_template('search.html')
+        my_vars = {
+            'results': results,
+            'search_term': search_term
+        }
+        self.response.out.write(template.render(my_vars))
+
 class LoginPage(webapp2.RequestHandler):
     def get(self):
         cur_user = users.get_current_user()
@@ -70,7 +91,8 @@ class MakeProfile(webapp2.RequestHandler):
         self.response.out.write(template.render(my_vars))
 
     def post(self):
-        profile_key = ndb.Key('Profile', self.request.get('name')) #changet ot he email
+        user = users.get_current_user()
+        profile_key = ndb.Key('Profile', user.nickname()) #.nickname returns the email
         profile = profile_key.get()
 
         if not profile:
@@ -79,13 +101,19 @@ class MakeProfile(webapp2.RequestHandler):
                 education = self.request.get('education'),
                 objective = self.request.get('objective'),
                 career = self.request.get('career'))
-            profile.key = profile_key
-            profile.put()
+        profile.key = profile_key
+        profile.put()
         self.redirect('/make_profile')
+
+class MainPage(webapp2.RequestHandler):
+    def get(self):
+        template = env.get_template('mainpage.html')
+
 
 
 app = webapp2.WSGIApplication([
     ('/', LoginPage),
     ('/make_profile', MakeProfile),
     ('/make_comment', MakeComment),
+    ('/main_page', MainPage),
 ], debug=True)
