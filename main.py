@@ -17,13 +17,11 @@ class Searching(ndb.Model):
     objective = ndb.StringProperty(indexed=True)
     career = ndb.StringProperty(indexed=True)
 
-class Search(webapp2.RequestHandler):
+class SearchPage(webapp2.RequestHandler):
+    #this method needs to have a search bar in every page -> done in html file
+    #once you press enter, will redirect to the search.html -> done in html files
+    #
     def get(self):
-        search_term = self.request.get('search_term')
-        if cur_user:
-            query = Searching.query(
-                ancestor = ndb.Key('Profile', search_term))
-            results = query.fetch()
 
         template = env.get_template('search.html')
         my_vars = {
@@ -105,11 +103,15 @@ class MakeProfile(webapp2.RequestHandler):
         profile.put()
         self.redirect('/make_profile')
 
-
-
-
 class MainPage(webapp2.RequestHandler):
     def get(self):
+        cur_user = users.get_current_user()
+        log_url = ''
+        if cur_user:
+            log_url = users.create_logout_url('/')
+        else:
+            log_url = users.create_login_url('/')
+
         template = env.get_template('mainpage.html')
         self.response.out.write(template.render())
 
@@ -119,5 +121,5 @@ app = webapp2.WSGIApplication([
     ('/make_profile', MakeProfile),
     ('/make_comment', MakeComment),
     ('/main_page', MainPage),
-    ('/search_page', Search)
+    ('/search_page', SearchPage)
 ], debug=True)
