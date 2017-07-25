@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html height: 100%>
 <head>
   <link rel="stylesheet" href="resources/login.css">
   <link rel="stylesheet"
@@ -7,31 +7,31 @@
   <link rel="stylesheet"
          href="https://fonts.googleapis.com/css?family=Rubik">
 </head>
-<body>
-  {% if user %}
-      <p>Hello, {{user.nickname()}}
-        <a href = "{{log_url}}">logout</a></p>
-  {% else %}
-      <p>Hello, random person login
-        <a href = "{{log_url}}">here!</a></p>
-  {% endif %}
-  <p> Click
-    <a href="/make_profile" title="Profile Page">here</a> to make your profile page!</p>
-  <p><a href="/main_page">Main Page</a></p>
 
-
-    <div>
-      <h1>BRIDGE</h1>
+  <body height: 100%>
+    <div id="login_header">
+    {% if user %}
+        <p>Hello, {{user.nickname()}}<a href = "{{log_url}}">logout</a></p>
+    {% else %}
+        <p>Hello, random person login<a href = "{{log_url}}">here!</a></p>
+    {% endif %}
+    <p> Click
+      <a href="/make_profile" title="Profile Page">here</a> to make your profile page! </br><a href="/main_page">Main Page</a></p>
     </div>
-
-  <center><p><strong> Welcome to BRIDGE where our mission is to level the
-     educational and career-related playing fields by increasing accessibility
-     to mentorship regarding both professional and personal matters.</strong></p></center>
-     <br>
-  <center><img src="resources/business-meeting.jpg" width="600px" length="400px"/></center>
-  <br>
-  <div id="creators">
-    <center><p> Created by: Jada, Bryan, and My</p></center>
-  </div>
+    <center>
+      <div>
+        <h1>BRIDGE</h1>
+      </div>
+    </center>
+    <div id="objective">
+    <center><p><strong> Welcome to BRIDGE where our mission is to level the
+       educational and career-related playing fields by increasing accessibility
+       to mentorship regarding both professional and personal matters.</strong></p></center>
+    </div>
+    <div id="creators">
+      <center><p> Created by: Jada, Bryan, and My</p></center>
+    </div>
 </body>
+
+
 </html>

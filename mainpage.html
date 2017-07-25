@@ -9,8 +9,18 @@
            href="https://fonts.googleapis.com/css?family=Rubik">
   </head>
   <body>
-    <p>hello</p>
+      <p>Hello,
+    {% if user %}
+     {{user.nickname()}}
+    {% endif %}</p>
     <p><a href="/search_page">Search Page</a></p>
-
+    <hr>
+    <div class="trending_feed">
+      <center>
+      <h2 id="trending_header">Trending</h2>
+      <p id="trend_box"><strong >Q:</strong> Hello</br>
+      <strong>A:</strong>Hey there</p>
+      </center>
+    </div>
   </body>
 </html>
