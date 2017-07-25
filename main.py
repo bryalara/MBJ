@@ -32,31 +32,25 @@ class Comment(ndb.Model):
     comment = ndb.StringProperty
 
 class MakeComment(webapp2.RequestHandler):
+
     def post(self):
-        comment_key = ndb.Key("Comment", self.request.get("comment"))
+        comment_key = ndb.Key('Comment', self.request.get('comment'))
         comment= comment_key.get()
         if not comment:
             comment = Comment(
-            name= self.request.get("name"),
+            name= self.request.get('name'),
             comment= self.request.get("comment")
             )
             comment.key= comment_key
             comment.put()
             my_vars = {
-
+                'comment': comment
             }
     def get(self):
-        template= env.get_template("comment.html")
+        logging.info("@@@@@@@####$$$$$")
+        template = env.get_template('comment.html')
+        logging.info("@@@@@@@####$$$$$")
         self.response.out.write(template.render())
-"""
-def ActuallySearching(property):
-    user = users.get_current_user()
-    profile_key = ndb.Key('Profile', user.nickname()) #.nickname returns the email
-    profile = profile_key.get()
-
-    if profile:
-        return profile(property)
-        self.redirect('/results_page')"""
 
 class SearchPage(webapp2.RequestHandler):
     def get(self):
