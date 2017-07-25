@@ -29,7 +29,7 @@ class LoginPage(webapp2.RequestHandler):
 
 class Comment(ndb.Model):
     name= ndb.StringProperty()
-    comment = ndb.StringProperty
+    comment = ndb.StringProperty()
 
 class MakeComment(webapp2.RequestHandler):
     def post(self):
@@ -42,7 +42,12 @@ class MakeComment(webapp2.RequestHandler):
             )
             comment.key= comment_key
             comment.put()
-        self.redirect("/")
+            my_vars = {
+
+            }
+    def get(self):
+        template= env.get_template("comment.html")
+        self.response.out.write(template.render())
 """
 def ActuallySearching(property):
     user = users.get_current_user()
