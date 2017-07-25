@@ -16,7 +16,28 @@ background-color: #D4F6D6;
 text-align: center;
 padding: 0px;
 }
-
+#trending_header{
+  box-shadow: 10px 10px 5px grey;
+  border-radius: 25px;
+  background: #D4F6D6;
+  padding: 20px;
+  width: 800px;
+  height: 80px;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  font-size: 300%;
+}
+#trend_box{
+  box-shadow: 5px 5px 50px #D4F6D6;
+  border-radius: 25px;
+  background: white;
+  padding: 20px;
+  width: 600px;
+  height: 80px;
+  font-family: 'Rubik', sans-serif;
+  text-align: center;
+  font-size: 100%;
+}
 #creators{
   background-color: #81DC87;
 }
