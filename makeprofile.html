@@ -22,11 +22,12 @@
         <a href = "{{log_url}}">login</a></p>
   {% endif %}
   {{cur_user}}
-  <form method="post" action="">  <!-- if the method is a get, shows up in URL. post posts to the database, in this case -->
+  <form method="post" action="" enctype = "multipart/form-data">  <!-- if the method is a get, shows up in URL. post posts to the database, in this case -->
     <h4>Name:<input type='text' name='name'></h4>
     <h4>Education:<input type='text' name='education'></h4>
     <h4>Objective:<input type='text' name='objective'></h4>
     <h4>Career:<input type='text' name='career'></h4>
+    <h4>Picture:<input type='file' name = 'pic' accept="image/*"/></h4>
     <input type='submit' value='Create Profile'> </input>
   </form>
 

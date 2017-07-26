@@ -7,16 +7,18 @@ from google.appengine.ext import ndb
 import jinja2
 import datetime
 import os
+import binascii
 
 env=jinja2.Environment(
     loader=jinja2.FileSystemLoader(
         os.path.dirname(__file__)))
 
 class Profile(ndb.Model):
-    name = ndb.StringProperty(indexed=True)
-    education = ndb.StringProperty(indexed=True)
-    objective = ndb.StringProperty(indexed=True)
-    career = ndb.StringProperty(indexed=True)
+    name = ndb.StringProperty()
+    education = ndb.StringProperty()
+    objective = ndb.StringProperty()
+    career = ndb.StringProperty()
+    pic = ndb.BlobProperty()
     #username is the key to refer to a specific profiletop
 
 class Comment(ndb.Model):
@@ -93,7 +95,8 @@ class MakeProfile(webapp2.RequestHandler):
                 name = self.request.get('name'),
                 education = self.request.get('education'),
                 objective = self.request.get('objective'),
-                career = self.request.get('career'))
+                career = self.request.get('career'),
+                pic = self.request.get('pic'))
         profile.key = profile_key
         profile.put()
         self.redirect('/make_profile')
@@ -148,9 +151,16 @@ class ProfilePage(webapp2.RequestHandler):
         profile_key = ndb.Key('Profile', user.nickname()) #.nickname returns the email
         profile = profile_key.get()
 
+        if profile and profile.pic: #green part is the url. nect part is the data for the iamge.
+            #binascii is a library. b2a converts the binary string into a base 64 string. stikcing onto url with the profile pic data
+            pic = "data:image;base64," + binascii.b2a_base64(profile.pic)
+        else:
+            pic = "../resources/handshake.jpg"
+
         template = env.get_template('profile.html')
         my_vars = {
-            'profile': profile
+            'profile': profile,
+            'pic': pic
         }
         self.response.out.write(template.render(my_vars))
 
