@@ -33,6 +33,12 @@
 </head>
 
   <body class="searchBody">
+    <div id="logoutBtn">
+      <a href="{{log_url}}">
+      <center>
+      <p> Logout</p>
+      </center></a>
+    </div>
   <div class="searcher">
     <form method="post" action="/search_page">  <!-- if the method is a get, shows up in URL. post posts to the database, in this case -->
       <h3><input id="searchBar" placeholder="" autocomplete="off" maxlength="25"  value="Search name..." type ='text' name ='name' onmousedown="active()" onblur="inactive()"></input><input type="submit" id="searchBtn" value='     '></h3>
