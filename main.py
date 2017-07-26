@@ -12,17 +12,17 @@ env=jinja2.Environment(
     loader=jinja2.FileSystemLoader(
         os.path.dirname(__file__)))
 
-class Comment(ndb.Model):
-    name= ndb.StringProperty()
-    comment = ndb.StringProperty()
-    profile_key = ndb.KeyProperty(Profile)
-
 class Profile(ndb.Model):
     name = ndb.StringProperty(indexed=True)
     education = ndb.StringProperty(indexed=True)
     objective = ndb.StringProperty(indexed=True)
     career = ndb.StringProperty(indexed=True)
-    #username is the key to refer to a specific profilekop
+    #username is the key to refer to a specific profiletop
+
+class Comment(ndb.Model):
+    name= ndb.StringProperty()
+    comment = ndb.StringProperty()
+    profile_key = ndb.KeyProperty(Profile)
 
 class LoginPage(webapp2.RequestHandler):
     def get(self):
@@ -157,6 +157,5 @@ app = webapp2.WSGIApplication([
     ('/make_comment', MakeComment),
     ('/main_page', MainPage),
     ('/search_page', SearchPage),
-    ('results_page', ResultsPage),
-    ('comment_hist', CommentHist)
+    ('results_page', ResultsPage)
 ], debug=True)
