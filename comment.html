@@ -5,6 +5,15 @@
          href="https://fonts.googleapis.com/css?family=Poppins">
   <link rel="stylesheet"
          href="https://fonts.googleapis.com/css?family=Rubik">
+  <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+  <script type='text/javascript '>
+    $(document).ready(function(){
+      $('.sidebarBtn').click(function(){
+      $('.sidebar').toggleClass('active');
+      $('.sidebarBtn').toggleClass('toggle');
+       })
+     })
+  </script>
 </head>
 <body>
   <center><font size="6">DISCUSSION</font></center>
@@ -16,11 +25,20 @@
       </form></center>
     <div class="posts"
   {% for com in comment_list %}
-    <p>Comment: {{com.comment}}</p>
     <p>Name: {{ com.name}}</p>
+    <p>Comment: {{com.comment}}</p>
     <hr>
   {% endfor %}
 </div>
-
+<div class="sidebar">
+   <ul>
+     <li><a href="/">Home</a> </li>
+     <li><a href="/">Profile</a> </li>
+     <li><a href="/make_comment">Discussion</a> </li>
+     <li><a href="/search_page">Search Page</a></li>
+   </ul>
+   <button class="sidebarBtn">
+     <span> </span>
+   </button>
   </body>
   </html>
