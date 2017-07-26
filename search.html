@@ -1,11 +1,57 @@
 <!DOCTYPE html>
 <html>
-  <body>
-    {% for result in result_list %}
-      <p>Name: {{result.name}}</p>
-    {% endfor %}
+<head>
+  <link rel="stylesheet" href="resources/login.css">
+  <link rel="stylesheet"
+         href="https://fonts.googleapis.com/css?family=Poppins">
+  <link rel="stylesheet"
+         href="https://fonts.googleapis.com/css?family=Rubik">
+  <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+  <script type='text/javascript'>
+    function active(){
+      var searchBar= document.getElementById('searchBar');
+      if(searchBar.value=='Search name...'){
+        searchBar.value=''
+        searchBar.placeholder='Search name...'
+      }
+    }
+    function inactive(){
+      var searchBar= document.getElementById('searchBar');
+      if(searchBar.value=='Search name...'){
+          searchBar.value='Search name...'
+          searchBar.placeholder=''
+      }
+    }
+    $(document).ready(function(){
+      $('.sidebarBtn').click(function(){
+        $('.sidebar').toggleClass('active');
+        $('.sidebarBtn').toggleClass('toggle');
+      })
+    })
+  </script>
+
+</head>
+
+  <body class="searchBody">
+  <div class="searcher">
     <form method="post" action="/search_page">  <!-- if the method is a get, shows up in URL. post posts to the database, in this case -->
-      <h3>Search name:<input type ='text' name ='name'></input></h3>
+      <h3><input id="searchBar" placeholder="" autocomplete="off" maxlength="25"  value="Search name..." type ='text' name ='name' onmousedown="active()" onblur="inactive()"></input><input type="submit" id="searchBtn" value='     '></h3>
     </form>
+  </div>
+    <center>
+    {% for result in result_list %}
+      <p class="searchPeople">{{result.name}}</p>
+    {% endfor %}
+    </center>
+
+    <div class="sidebar">
+       <ul>
+         <li><a href="/">Home</a> </li>
+         <li><a href="/">Profile</a> </li>
+       </ul>
+       <button class="sidebarBtn">
+         <span> </span>
+       </button>
+    </div>
   </body>
 </html>
