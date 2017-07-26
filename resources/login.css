@@ -220,3 +220,11 @@ ul li a{
   height: 48px;
   opacity: .9;
 }
+#logoutBtn{
+  position: absolute;
+  background-color: #89c4aa;
+  opacity: .9;
+  right: 0px;
+  top: 0px;
+  width: 80px;
+}
