@@ -138,10 +138,11 @@ class MainPage(webapp2.RequestHandler):
         user = users.get_current_user()
         profile_key = ndb.Key('Profile', user.nickname()) #.nickname returns the email
         profile = profile_key.get()
-
+        log_url = users.create_logout_url('/')
         template = env.get_template('mainpage.html')
         my_vars = {
-            'profile': profile
+            'profile': profile,
+            'log_url': log_url
         }
         self.response.out.write(template.render(my_vars))
 
