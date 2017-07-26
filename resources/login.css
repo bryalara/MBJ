@@ -210,5 +210,13 @@ ul li a{
   opacity: .7;
   margin: 20px;
   padding: 20px;
-  
+
+}
+#userWelcome{
+  position: relative;
+  left: 50px;
+  background-color: #D4F6D6;
+  padding: 1px;
+  height: 48px;
+  opacity: .9;
 }

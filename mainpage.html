@@ -19,23 +19,13 @@
 
   </head>
   <body>
-  <div class="sidebar">
-     <ul>
-       <li><a href="/">Home</a> </li>
-       <li><a href="/">Profile</a> </li>
-       <li><a href="/make_comment">Discussion</a> </li>
-       <li><a href="/search_page">Search Page</a></li>
-     </ul>
-     <button class="sidebarBtn">
-       <span> </span>
-     </button>
-  </div>
 
-
+    <div id="userWelcome">
       <p>Hello,
     {% if user %}
      {{user.nickname()}}
     {% endif %}</p>
+    </div>
     <hr>
     <div class="trending_feed">
       <center>
@@ -44,5 +34,17 @@
       <strong>A:</strong>Hey there</p>
       </center>
     </div>
+    <div class="sidebar">
+       <ul>
+         <li><a href="/">Home</a> </li>
+         <li><a href="/">Profile</a> </li>
+         <li><a href="/make_comment">Discussion</a> </li>
+         <li><a href="/search_page">Search Page</a></li>
+       </ul>
+       <button class="sidebarBtn">
+         <span> </span>
+       </button>
+    </div>
+
   </body>
 </html>
