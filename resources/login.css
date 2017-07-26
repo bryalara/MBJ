@@ -220,11 +220,15 @@ ul li a{
 }
 #logoutBtn{
   position: absolute;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  box-shadow: 5px 5px 5px grey;
   background-color: #89c4aa;
   opacity: .9;
   right: 0px;
   top: 0px;
   width: 80px;
+
 }
 .profileInfo{
   background-color: #D4F6D6;
@@ -237,5 +241,4 @@ ul li a{
   position: absolute;
   left: 10%;
   bottom: 0px;
-
 }
