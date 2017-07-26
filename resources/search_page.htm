@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!-- saved from url=(0034)http://localhost:12080/search_page -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="./search_page_files/login.css">
+  <link rel="stylesheet" href="./search_page_files/css">
+  <link rel="stylesheet" href="./search_page_files/css(1)">
+  <script src="./search_page_files/jquery-3.2.1.js"></script>
+  <script type="text/javascript">
+    function active(){
+      var searchBar= document.getElementById('searchBar');
+      if(searchBar.value=='Search name...'){
+        searchBar.value=''
+        searchBar.placeholder='Search name...'
+      }
+    }
+    function inactive(){
+      var searchBar= document.getElementById('searchBar');
+      if(searchBar.value=='Search name...'){
+          searchBar.value='Search name...'
+          searchBar.placeholder=''
+      }
+    }
+    $(document).ready(function(){
+      $('.sidebarBtn').click(function(){
+        $('.sidebar').toggleClass('active');
+        $('.sidebarBtn').toggleClass('toggle');
+      })
+    })
+  </script>
+
+</head>
+
+  <body class="searchBody">
+  <div class="searcher">
+    <form method="post" action="http://localhost:12080/search_page">  <!-- if the method is a get, shows up in URL. post posts to the database, in this case -->
+      <h3><input id="searchBar" placeholder="" autocomplete="off" maxlength="25" value="Search name..." type="text" name="name" onmousedown="active()" onblur="inactive()"><input type="submit" id="searchBtn" value="     "></h3>
+    </form>
+  </div>
+    <center>
+    
+      <p class="searchPeople">Bryan</p>
+    
+      <p class="searchPeople">Bryan </p>
+    
+    </center>
+
+    <div class="sidebar">
+       <ul>
+         <li><a href="http://localhost:12080/">Home</a> </li>
+         <li><a href="http://localhost:12080/">Profile</a> </li>
+       </ul>
+       <button class="sidebarBtn">
+         <span> </span>
+       </button>
+    </div>
+  
+</body></html>
