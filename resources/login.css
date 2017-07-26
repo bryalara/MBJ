@@ -19,7 +19,6 @@ body {
   padding: 30px;
   background-color: #FFFFF0;
   opacity: 0.7;
-
 }
 
 
@@ -226,4 +225,17 @@ ul li a{
   right: 0px;
   top: 0px;
   width: 80px;
+}
+.profileInfo{
+  background-color: #D4F6D6;
+  opacity: .7;
+  padding: 20px;
+  margin: 100px;
+  width: 300px;
+}
+#banner{
+  position: absolute;
+  left: 10%;
+  bottom: 0px;
+
 }
