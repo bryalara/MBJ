@@ -1,15 +1,18 @@
 <html>
 <center><head>DISCUSSION</head></center>
 <body>
+
   <center><form method= "post" action="/make_comment">
 <p>Enter your name: <input type="text" name="name"/></input></p>
 <p>Leave me a comment: <input type="text" name="comment"/></input></p>
 <input type="submit" value= "Post Comment"></input>
       </form></center>
+  {% for com in comment_list %}
+    <p>Comment: {{com.comment}}</p>
+    <p>Name: {{ com.name}}</p>
+    <hr>
+  {% endfor %}
 
-{% for com in comment_list %}
-  <p>Comment: {{com.comment}}</p>
-  <p>Name: {{ com.name}}</p>
-{% endfor %}
+
   </body>
-  </html> 
+  </html>
