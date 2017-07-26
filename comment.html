@@ -5,9 +5,11 @@
 <p>Enter your name: <input type="text" name="name"/></input></p>
 <p>Leave me a comment: <input type="text" name="comment"/></input></p>
 <input type="submit" value= "Post Comment"></input>
-      </form></center>
-<!--
-<div id="forms">
--->
-  </body>
-  </html>
+  </form></center>
+
+  {% for com in comment_list %}
+    <p>Comment: {{com.comment}}</p>
+    <p>Name: {{com.name}}</p>
+  {% endfor %}
+</body>
+</html>

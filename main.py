@@ -5,6 +5,7 @@ import urllib2
 from google.appengine.api import users
 from google.appengine.ext import ndb
 import jinja2
+import datetime
 import os
 
 env=jinja2.Environment(
@@ -26,31 +27,6 @@ class LoginPage(webapp2.RequestHandler):
             'log_url': log_url,
         }
         self.response.out.write(template.render(my_vars))
-
-class Comment(ndb.Model):
-    name= ndb.StringProperty()
-    comment = ndb.StringProperty
-
-class MakeComment(webapp2.RequestHandler):
-
-    def post(self):
-        comment_key = ndb.Key('Comment', self.request.get('comment'))
-        comment= comment_key.get()
-        if not comment:
-            comment = Comment(
-            name= self.request.get('name'),
-            comment= self.request.get("comment")
-            )
-            comment.key= comment_key
-            comment.put()
-            my_vars = {
-                'comment': comment
-            }
-    def get(self):
-        logging.info("@@@@@@@####$$$$$")
-        template = env.get_template('comment.html')
-        logging.info("@@@@@@@####$$$$$")
-        self.response.out.write(template.render())
 
 class SearchPage(webapp2.RequestHandler):
     def get(self):
@@ -125,6 +101,59 @@ class MakeProfile(webapp2.RequestHandler):
         profile.put()
         self.redirect('/make_profile')
 
+
+class Comment(ndb.Model):
+    name= ndb.StringProperty()
+    comment = ndb.StringProperty()
+    profile_key = ndb.KeyProperty(Profile)
+
+class MakeComment(webapp2.RequestHandler):
+    def get(self):
+        name = ""
+        comment = ""
+        query = Comment.query()
+        comment_list = query.fetch()
+
+        template = env.get_template('comment.html')
+        my_vars = {
+            'name': name,
+            'comment': comment,
+            'comment_list': comment_list
+        }
+        self.response.out.write(template.render(my_vars))
+
+    def post(self):
+        user = users.get_current_user()
+        comment_key = ndb.Key('Comment', self.request.get('comment')+str(datetime.datetime.now()))
+        comment = comment_key.get()
+
+        profile_key = ndb.Key('Profile', user.nickname())
+        profile = profile_key.get()
+
+        if not comment:
+            comment = Comment(
+                name = self.request.get('name'),
+                comment = self.request.get('comment'),
+                profile_key = profile.key)
+        comment.key = comment_key
+        comment.put()
+        self.redirect('/make_comment')
+
+class CommentHist(webapp2.RequestHandler):
+    def post(self):
+        user = users.get_current_user()
+        comment_key = ndb.Key('Comment', user.nickname())
+        comment = comment_key.get()
+
+        query = comment.query()
+        comment_list = query.fetch()
+
+        template = env.get_template('comment.html')
+        my_vars = {
+            'comment_list': comment_list
+        }
+        self.response.out.write(template.render(my_vars))
+
 class MainPage(webapp2.RequestHandler):
     def get(self):
         cur_user = users.get_current_user()
@@ -144,5 +173,6 @@ app = webapp2.WSGIApplication([
     ('/make_comment', MakeComment),
     ('/main_page', MainPage),
     ('/search_page', SearchPage),
-    ('results_page', ResultsPage)
+    ('results_page', ResultsPage),
+    ('comment_hist', CommentHist)
 ], debug=True)
