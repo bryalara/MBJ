@@ -5,11 +5,24 @@ import urllib2
 from google.appengine.api import users
 from google.appengine.ext import ndb
 import jinja2
+import datetime
 import os
 
 env=jinja2.Environment(
     loader=jinja2.FileSystemLoader(
         os.path.dirname(__file__)))
+
+class Profile(ndb.Model):
+    name = ndb.StringProperty(indexed=True)
+    education = ndb.StringProperty(indexed=True)
+    objective = ndb.StringProperty(indexed=True)
+    career = ndb.StringProperty(indexed=True)
+    #username is the key to refer to a specific profiletop
+
+class Comment(ndb.Model):
+    name= ndb.StringProperty()
+    comment = ndb.StringProperty()
+    profile_key = ndb.KeyProperty(Profile)
 
 class LoginPage(webapp2.RequestHandler):
     def get(self):
@@ -26,32 +39,7 @@ class LoginPage(webapp2.RequestHandler):
             'log_url': log_url,
         }
         self.response.out.write(template.render(my_vars))
-
-class Comment(ndb.Model):
-    name= ndb.StringProperty()
-    comment = ndb.StringProperty
-
-class MakeComment(webapp2.RequestHandler):
-
-    def post(self):
-        comment_key = ndb.Key('Comment', self.request.get('comment'))
-        comment= comment_key.get()
-        if not comment:
-            comment = Comment(
-            name= self.request.get('name'),
-            comment= self.request.get("comment")
-            )
-            comment.key= comment_key
-            comment.put()
-            my_vars = {
-                'comment': comment
-            }
-    def get(self):
-        template = env.get_template('comment.html')
-        query = comment.query()
-
-        self.response.out.write(template.render())
-
+        
 class SearchPage(webapp2.RequestHandler):
     def get(self):
         name = ""
@@ -76,7 +64,7 @@ class SearchPage(webapp2.RequestHandler):
         my_vars = {
             'result_list': result_list
         }
-        self.response.out.write(template.render(my_vars))
+        self.response.out.write(template.render(my_vars)) #make the answers show up on results.html
 
 class ResultsPage(webapp2.RequestHandler):
     def get(self):
@@ -85,13 +73,6 @@ class ResultsPage(webapp2.RequestHandler):
             'interesting': interesting
         }
         self.response.out.write(template.render())
-
-class Profile(ndb.Model):
-    name = ndb.StringProperty(indexed=True)
-    education = ndb.StringProperty(indexed=True)
-    objective = ndb.StringProperty(indexed=True)
-    career = ndb.StringProperty(indexed=True)
-    #username is the key to refer to a specific profilekop
 
 class MakeProfile(webapp2.RequestHandler):
     def get(self):
@@ -124,6 +105,38 @@ class MakeProfile(webapp2.RequestHandler):
         profile.key = profile_key
         profile.put()
         self.redirect('/make_profile')
+
+class MakeComment(webapp2.RequestHandler):
+    def get(self):
+        name = ""
+        comment = ""
+        query = Comment.query()
+        comment_list = query.fetch()
+
+        template = env.get_template('comment.html')
+        my_vars = {
+            'name': name,
+            'comment': comment,
+            'comment_list': comment_list
+        }
+        self.response.out.write(template.render(my_vars))
+
+    def post(self):
+        user = users.get_current_user()
+        comment_key = ndb.Key('Comment', self.request.get('comment')+str(datetime.datetime.now()))
+        comment = comment_key.get()
+
+        profile_key = ndb.Key('Profile', user.nickname())
+        profile = profile_key.get()
+
+        if not comment:
+            comment = Comment(
+                name = self.request.get('name'),
+                comment = self.request.get('comment'),
+                profile_key = profile.key)
+        comment.key = comment_key
+        comment.put()
+        self.redirect('/make_comment')
 
 class MainPage(webapp2.RequestHandler):
     def get(self):

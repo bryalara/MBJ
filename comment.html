@@ -7,6 +7,9 @@
 <input type="submit" value= "Post Comment"></input>
       </form></center>
 
-
+{% for com in comment_list %}
+  <p>Comment: {{com.comment}}</p>
+  <p>Name: {{ com.name}}</p>
+{% endfor %}
   </body>
-  </html>
+  </html> 
