@@ -157,3 +157,11 @@ ul li a{
 .sidebarBtn.toggle span{
   background: transparent;
 }
+.sidebarBtn.toggle span:before{
+  top: 0;
+  transform: rotate(45deg);
+}
+.sidebarBtn.toggle span:after{
+  top: 0;
+  transform: rotate(-45deg);
+}
