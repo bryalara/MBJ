@@ -23,6 +23,11 @@
     <div id="userWelcome">
       <p>Hello, {{profile.name}}</p>
     </div>
+    <div id="logoutBtn">
+      <center>
+      <p> <a href="{{log_url}}">Logout</a></p>
+      </center>
+    </div>
     <hr>
     <div class="trending_feed">
       <center>
@@ -33,10 +38,12 @@
     </div>
     <div class="sidebar">
        <ul>
-         <li><a href="/">Home</a> </li>
-         <li><a href="/">Profile</a> </li>
+         <li><a href="/">Home(Login Page)</a> </li>
+         <li><a href="/main_page">Home(Main Page)</a> </li>
+         <li><a href="/profile_page">Profile</a> </li>
          <li><a href="/make_comment">Discussion</a> </li>
          <li><a href="/search_page">Search Page</a></li>
+         <li><a href="/make_profile">Edit Profile</a></li>
        </ul>
        <button class="sidebarBtn">
          <span> </span>

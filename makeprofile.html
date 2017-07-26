@@ -9,18 +9,11 @@
          href="https://fonts.googleapis.com/css?family=Rubik">
 </head>
 <body>
-  <a href="/" title="Main Page">Main Page</a>
+  <a href="/main_page" title="Main Page">Main Page</a>
   {% for profile in profiles %}
     <li>{{profile.name}}</li>
   {% endfor %}
 
-  {% if user %}
-      <p>Hello, {{user.nickname()}}
-        <a href = "{{log_url}}">logout</a></p>
-  {% else %}
-      <p>Hello, random person!
-        <a href = "{{log_url}}">login</a></p>
-  {% endif %}
   {{cur_user}}
   <form method="post" action="" enctype = "multipart/form-data">  <!-- if the method is a get, shows up in URL. post posts to the database, in this case -->
     <h4>Name:<input type='text' name='name'></h4>
