@@ -132,15 +132,15 @@ class MakeComment(webapp2.RequestHandler):
 
 class MainPage(webapp2.RequestHandler):
     def get(self):
-        cur_user = users.get_current_user()
-        log_url = ''
-        if cur_user:
-            log_url = users.create_logout_url('/')
-        else:
-            log_url = users.create_login_url('/')
+        user = users.get_current_user()
+        profile_key = ndb.Key('Profile', user.nickname()) #.nickname returns the email
+        profile = profile_key.get()
 
         template = env.get_template('mainpage.html')
-        self.response.out.write(template.render())
+        my_vars = {
+            'profile': profile
+        }
+        self.response.out.write(template.render(my_vars))
 
 class ProfilePage(webapp2.RequestHandler):
     def get(self):

@@ -21,10 +21,7 @@
   <body>
 
     <div id="userWelcome">
-      <p>Hello,
-    {% if user %}
-     {{user.nickname()}}
-    {% endif %}</p>
+      <p>Hello, {{profile.name}}</p>
     </div>
     <hr>
     <div class="trending_feed">
