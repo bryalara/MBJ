@@ -39,7 +39,7 @@ class LoginPage(webapp2.RequestHandler):
             'log_url': log_url,
         }
         self.response.out.write(template.render(my_vars))
-        
+
 class SearchPage(webapp2.RequestHandler):
     def get(self):
         name = ""
