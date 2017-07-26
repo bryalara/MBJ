@@ -2,7 +2,7 @@
 <html>
   <body>
     {% for result in result_list %}
-      <p>{{result.name}}</p>
+      <p>Name: {{result.name}}</p>
     {% endfor %}
     <form method="post" action="/search_page">  <!-- if the method is a get, shows up in URL. post posts to the database, in this case -->
       <h3>Search name:<input type ='text' name ='name'></input></h3>
