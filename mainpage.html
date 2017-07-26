@@ -23,7 +23,8 @@
      <ul>
        <li><a href="/">Home</a> </li>
        <li><a href="/">Profile</a> </li>
-       <li><a href="/make_comment">Comments</a> </li>
+       <li><a href="/make_comment">Discussion</a> </li>
+       <li><a href="/search_page">Search Page</a></li>
      </ul>
      <button class="sidebarBtn">
        <span> </span>
@@ -35,7 +36,6 @@
     {% if user %}
      {{user.nickname()}}
     {% endif %}</p>
-    <p><a href="/search_page">Search Page</a></p>
     <hr>
     <div class="trending_feed">
       <center>
