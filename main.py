@@ -45,9 +45,11 @@ class LoginPage(webapp2.RequestHandler):
 class SearchPage(webapp2.RequestHandler):
     def get(self):
         name = ""
+        log_url = users.create_logout_url('/')
         template = env.get_template('search.html')
         my_vars = {
-            'name': name
+            'name': name,
+            'log_url': log_url,
         }
         self.response.out.write(template.render(my_vars))
     #this method needs to have a search bar in every page -> done in html file
@@ -56,15 +58,17 @@ class SearchPage(webapp2.RequestHandler):
         #logging.info("@@@@@@ in post")
         name = self.request.get('name')
         user = users.get_current_user()
+        log_url = users.create_logout_url('/')
         profile_key = ndb.Key('Profile', user.nickname()) #.nickname returns the email
         profile = profile_key.get()
-
         query = profile.query()
         result_list = query.fetch()
         #logging.info("@@@@@@@@#####" + str(result_list))
         template = env.get_template('search.html')
         my_vars = {
-            'result_list': result_list
+            'result_list': result_list,
+            'log_url': log_url,
+            
         }
         self.response.out.write(template.render(my_vars)) #make the answers show up on results.html
 
@@ -75,13 +79,14 @@ class MakeProfile(webapp2.RequestHandler):
         education = ""
         objective = ""
         career = ""
-
+        log_url = users.create_logout_url('/')
         template = env.get_template('makeprofile.html')
         my_vars = {
             'name': name,
             'education': education,
             'objective': objective,
-            'career': career
+            'career': career,
+            'log_url': log_url,
         }
         self.response.out.write(template.render(my_vars))
 
@@ -107,12 +112,13 @@ class MakeComment(webapp2.RequestHandler):
         comment = ""
         query = Comment.query()
         comment_list = query.fetch()
-
+        log_url = users.create_logout_url('/')
         template = env.get_template('comment.html')
         my_vars = {
             'name': name,
             'comment': comment,
-            'comment_list': comment_list
+            'comment_list': comment_list,
+            'log_url': log_url,
         }
         self.response.out.write(template.render(my_vars))
 
@@ -138,10 +144,11 @@ class MainPage(webapp2.RequestHandler):
         user = users.get_current_user()
         profile_key = ndb.Key('Profile', user.nickname()) #.nickname returns the email
         profile = profile_key.get()
-
+        log_url = users.create_logout_url('/')
         template = env.get_template('mainpage.html')
         my_vars = {
-            'profile': profile
+            'profile': profile,
+            'log_url': log_url
         }
         self.response.out.write(template.render(my_vars))
 
@@ -150,7 +157,7 @@ class ProfilePage(webapp2.RequestHandler):
         user = users.get_current_user()
         profile_key = ndb.Key('Profile', user.nickname()) #.nickname returns the email
         profile = profile_key.get()
-
+        log_url = users.create_logout_url('/')
         if profile and profile.pic: #green part is the url. nect part is the data for the iamge.
             #binascii is a library. b2a converts the binary string into a base 64 string. stikcing onto url with the profile pic data
             pic = "data:image;base64," + binascii.b2a_base64(profile.pic)
@@ -160,7 +167,8 @@ class ProfilePage(webapp2.RequestHandler):
         template = env.get_template('profile.html')
         my_vars = {
             'profile': profile,
-            'pic': pic
+            'pic': pic,
+            'log_url': log_url,
         }
         self.response.out.write(template.render(my_vars))
 
