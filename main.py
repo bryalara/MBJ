@@ -47,9 +47,9 @@ class MakeComment(webapp2.RequestHandler):
                 'comment': comment
             }
     def get(self):
-        logging.info("@@@@@@@####$$$$$")
         template = env.get_template('comment.html')
-        logging.info("@@@@@@@####$$$$$")
+        query = comment.query()
+
         self.response.out.write(template.render())
 
 class SearchPage(webapp2.RequestHandler):
