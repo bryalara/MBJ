@@ -12,6 +12,18 @@ env=jinja2.Environment(
     loader=jinja2.FileSystemLoader(
         os.path.dirname(__file__)))
 
+class Comment(ndb.Model):
+    name= ndb.StringProperty()
+    comment = ndb.StringProperty()
+    profile_key = ndb.KeyProperty(Profile)
+
+class Profile(ndb.Model):
+    name = ndb.StringProperty(indexed=True)
+    education = ndb.StringProperty(indexed=True)
+    objective = ndb.StringProperty(indexed=True)
+    career = ndb.StringProperty(indexed=True)
+    #username is the key to refer to a specific profilekop
+
 class LoginPage(webapp2.RequestHandler):
     def get(self):
         cur_user = users.get_current_user()
@@ -62,13 +74,6 @@ class ResultsPage(webapp2.RequestHandler):
         }
         self.response.out.write(template.render())
 
-class Profile(ndb.Model):
-    name = ndb.StringProperty(indexed=True)
-    education = ndb.StringProperty(indexed=True)
-    objective = ndb.StringProperty(indexed=True)
-    career = ndb.StringProperty(indexed=True)
-    #username is the key to refer to a specific profilekop
-
 class MakeProfile(webapp2.RequestHandler):
     def get(self):
         #name = Profile.get('name')
@@ -101,12 +106,6 @@ class MakeProfile(webapp2.RequestHandler):
         profile.put()
         self.redirect('/make_profile')
 
-
-class Comment(ndb.Model):
-    name= ndb.StringProperty()
-    comment = ndb.StringProperty()
-    profile_key = ndb.KeyProperty(Profile)
-
 class MakeComment(webapp2.RequestHandler):
     def get(self):
         name = ""
@@ -138,21 +137,6 @@ class MakeComment(webapp2.RequestHandler):
         comment.key = comment_key
         comment.put()
         self.redirect('/make_comment')
-
-class CommentHist(webapp2.RequestHandler):
-    def post(self):
-        user = users.get_current_user()
-        comment_key = ndb.Key('Comment', user.nickname())
-        comment = comment_key.get()
-
-        query = comment.query()
-        comment_list = query.fetch()
-
-        template = env.get_template('comment.html')
-        my_vars = {
-            'comment_list': comment_list
-        }
-        self.response.out.write(template.render(my_vars))
 
 class MainPage(webapp2.RequestHandler):
     def get(self):
