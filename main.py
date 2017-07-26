@@ -66,14 +66,6 @@ class SearchPage(webapp2.RequestHandler):
         }
         self.response.out.write(template.render(my_vars)) #make the answers show up on results.html
 
-class ResultsPage(webapp2.RequestHandler):
-    def get(self):
-        template = env.get_template('results.html')
-        my_vars = {
-            'interesting': interesting
-        }
-        self.response.out.write(template.render())
-
 class MakeProfile(webapp2.RequestHandler):
     def get(self):
         #name = Profile.get('name')
@@ -150,6 +142,18 @@ class MainPage(webapp2.RequestHandler):
         template = env.get_template('mainpage.html')
         self.response.out.write(template.render())
 
+class ProfilePage(webapp2.RequestHandler):
+    def get(self):
+        user = users.get_current_user()
+        profile_key = ndb.Key('Profile', user.nickname()) #.nickname returns the email
+        profile = profile_key.get()
+
+        template = env.get_template('profile.html')
+        my_vars = {
+            'profile': profile
+        }
+        self.response.out.write(template.render(my_vars))
+
 
 app = webapp2.WSGIApplication([
     ('/', LoginPage),
@@ -157,5 +161,5 @@ app = webapp2.WSGIApplication([
     ('/make_comment', MakeComment),
     ('/main_page', MainPage),
     ('/search_page', SearchPage),
-    ('results_page', ResultsPage)
+    ('/profile_page', ProfilePage)
 ], debug=True)
