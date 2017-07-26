@@ -1,0 +1,16 @@
+html {
+  color: gray
+}
+
+body {
+  background-color: white;
+}
+
+h1 {
+color: gray;
+font-size: 500%;
+margin: 0px;
+background-color: white;
+text-align: center;
+padding: 0px;
+}
