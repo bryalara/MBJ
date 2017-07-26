@@ -30,7 +30,7 @@ button {
     font-size: 18px;
 }
 
-a {
+.link {
     text-decoration: none;
     font-size: 22px;
     color: black;
@@ -60,6 +60,11 @@ button:hover, a:hover {
   </head>
   <body>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div id="logoutBtn">
+  <center>
+  <p> <a href="{{log_url}}">Logout</a></p>
+  </center>
+</div>
     <div class="card">
       <img src="{{pic}}" alt="John" style="width:100%">
       <div class="container">
@@ -68,10 +73,10 @@ button:hover, a:hover {
         <p>{{profile.objective}}</p>
         <p>{{profile.career}}</p>
         <p>{{profile.education}}</p>
-        <a href="#"><i class="fa fa-dribbble"></i></a>
-        <a href="#"><i class="fa fa-twitter"></i></a>
-        <a href="#"><i class="fa fa-linkedin"></i></a>
-        <a href="#"><i class="fa fa-facebook"></i></a>
+        <a class="link" href="#"><i class="fa fa-dribbble"></i></a>
+        <a class="link" href="#"><i class="fa fa-twitter"></i></a>
+        <a class="link" href="#"><i class="fa fa-linkedin"></i></a>
+        <a class="link" href="#"><i class="fa fa-facebook"></i></a>
         <p><button>Contact</button></p>
       </div>
     </div>
