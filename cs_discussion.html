@@ -24,9 +24,9 @@
     <p> <a href="{{log_url}}">Logout</a></p>
     </center>
   </div>
-  <br><center><font size="8">DISCUSSION</font></center>
-  <br> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <a href="/women">Talk to women in tech!</a> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-  <a href="/cs">Curious about Computer Science?</a>
+  <br><center><font size="8">COMPUTER SCIENCE</font></center>
+  <a href='/make_comment'>Back to Discussions</a>
+
   <center><form method= "post" action="/make_comment">
 <p>Enter your name: <input type="text" name="name"/></input></p>
 <p>Start a discussion: <input type="text" name="comment"/></input></p>
@@ -34,13 +34,12 @@
       </form></center>
     <div class="posts"
   {% for com in comment_list %}
-    <h2><b>{{com.name}}</b></h2>
-    <p>{{com.comment}}</p>
-    <p>Time: {{com.created_at}}<p>
+    <p>Name: {{ com.name}}</p>
+    <p>Comment: {{com.comment}}</p>
+    <p>Time:{{com.created_at}}<p>
     <hr>
   {% endfor %}
 </div>
-
 
 </div>
 <div class="sidebar">
@@ -57,5 +56,5 @@
      <span> </span>
    </button>
 
-  </body>
-  </html>
+</body>
+</html>

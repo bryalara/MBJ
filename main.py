@@ -65,11 +65,16 @@ class SearchPage(webapp2.RequestHandler):
         query = profile.query()
         result_list = query.fetch()
         #logging.info("@@@@@@@@#####" + str(result_list))
+        if profile and profile.pic: #green part is the url. nect part is the data for the iamge.
+            #binascii is a library. b2a converts the binary string into a base 64 string. stikcing onto url with the profile pic data
+            pic = "data:image;base64," + binascii.b2a_base64(profile.pic)
+        else:
+            pic = "../resources/handshake.jpg"
         template = env.get_template('search.html')
         my_vars = {
             'result_list': result_list,
             'log_url': log_url,
-
+            'pic': pic
         }
         self.response.out.write(template.render(my_vars)) #make the answers show up on results.html
 
@@ -125,8 +130,10 @@ class MakeComment(webapp2.RequestHandler):
         name = ""
         comment = ""
         created_at = ""
+
         query = Comment.query()
         comment_list = query.fetch()
+
         comment_list.sort(comment_sort_function)
         log_url = users.create_logout_url('/')
         template = env.get_template('comment.html')
@@ -185,7 +192,7 @@ class ProfilePage(webapp2.RequestHandler):
         my_vars = {
             'profile': profile,
             'pic': pic,
-            'log_url': log_url,
+            'log_url': log_url
         }
         self.response.out.write(template.render(my_vars))
 
@@ -194,7 +201,44 @@ class About(webapp2.RequestHandler):
         template= env.get_template('about.html')
         self.response.out.write(template.render())
 
+class Women(webapp2.RequestHandler):
+    def get(self):
+        template= env.get_template('women_discussion.html')
+        self.response.out.write(template.render())
 
+class CompSci(webapp2.RequestHandler):
+    def get(self):
+        template= env.get_template('cs_discussion.html')
+        self.response.out.write(template.render())
+
+class GoToProfile(webapp2.RequestHandler):
+    def get(self):
+        #HOW TO LINK A NAME TO ITS PROFILE???
+        #jquery is for animation, actions, hover. Javascript is more of... developer tools
+        user = users.get_current_user()
+        profile_key = ndb.Key('Profile', user.nickname()) #.nickname returns the email
+        profile = profile_key.get() #getting the profile
+        query = profile.query() #accessing the database for a profile
+        result_list = query.fetch() #creating a list of all the profiles in the database
+
+        keys = []
+        pics = []
+        for result in result_list:
+            keys.append(result.key)
+
+        if profile and profile.pic:
+            pic = "data:image;base64," + binascii.b2a_base64(profile.pic)
+        else:
+            pic = "../resources/handshake.jpg"
+
+        log_url = users.create_logout_url('/')
+        template = env.get_template('profile.html')
+        my_vars = {
+            'profile': profile,
+            'pic': pic,
+            'log_url': log_url
+        }
+        self.response.out.write(template.render(my_vars))
 
 app = webapp2.WSGIApplication([
     ('/', LoginPage),
@@ -203,5 +247,8 @@ app = webapp2.WSGIApplication([
     ('/main_page', MainPage),
     ('/search_page', SearchPage),
     ('/profile_page', ProfilePage),
-    ('/about', About)
+    ('/about', About),
+    ('/go_to_profile', GoToProfile),
+    ('/women', Women),
+    ('/cs', CompSci)
 ], debug=True)

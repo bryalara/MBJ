@@ -23,8 +23,10 @@
     <p> <a href="{{log_url}}">Logout</a></p>
     </center>
   </div>
+  <div id="logoMP">
+  <img src="resources/big_logo.png" height=120px>
+  </div>
   <center>
-  <a href="/main_page" title="Main Page">Main Page</a>
   {% for profile in profiles %}
     <li>{{profile.name}}</li>
   {% endfor %}
@@ -41,6 +43,7 @@
   </form>
   </div>
   </center>
+
   <div class="sidebar">
      <ul>
        <li><a href="/">Home(Login Page)</a> </li>
