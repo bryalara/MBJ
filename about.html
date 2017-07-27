@@ -6,7 +6,7 @@
   <link rel="stylesheet"
          href="https://fonts.googleapis.com/css?family=Rubik">
   <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-  <script src="resources/about.js"></script>
+  <script src="resources/about.js"</script>
   <script type='text/javascript '>
     $(document).ready(function(){
       $('.sidebarBtn').click(function(){
@@ -15,11 +15,50 @@
        })
      })
   </script>
+  <style>
+.container {
+  position:relative;
+  width: 50%;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: white;
+}
+
+.container:hover .overlay {
+  opacity: 3;
+}
+
+.text {
+  color: gray;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+</style>
 </head>
 <body>
   <div id="logo">
   <center><img src="resources/big_logo.png" height=120px></center>
-</div>
+</div><
   <div id="logoutBtn">
     <center>
     <p> <a href="{{log_url}}">Logout</a></p>
@@ -44,21 +83,34 @@
   <br>
 
     <div class="flex">
-      <center>
-<center><a href="https://www.linkedin.com/in/mylinh-pham-a604779b"
-  target="_blank"><img src="resources/mbj1.jpg" length="500px" width="300px"></a></center>
+
+    <center><div class="container">
+<a href="https://www.linkedin.com/in/mylinh-pham-a604779b"
+  target="_blank"><img src="resources/mbj1.jpg" class="image" length="500px" width="300px"></a>
+  <div class="overlay">
+  <div class="text"> From Vallejo, California Will be attending UC Irvine this fall!</div>
+  </div>
+</div>
         <p>Mylinh Pham</p>
     Front End Developer</center>
 
-    <center><div class="imgContainer">
-<center><a href="https://www.linkedin.com/in/bryan-lara-620a98130/"
-  target="_blank"><img src="resources/mbj2.jpg"  length="500px" width="300px"></a></center>
+    <center><div class="container">
+<a href="https://www.linkedin.com/in/bryan-lara-620a98130/"
+  target="_blank"><img src="resources/mbj2.jpg" class="image" length="500px" width="300px"></a>
+  <div class="overlay">
+  <div class="text"> From Houston, Texas. Will be attending TAMU!</div>
+  </div>
+</div>
         <p>Bryan Lara</p>
     Back End Developer</center>
 
-    <center><div class="imgContainer">
-<center><a href="https://www.linkedin.com/in/jada-lee-4a0690125/"
-  target="_blank"><img src="resources/mbj3.jpg" length="500px" width="300px"></a></center>
+<center><div class="container">
+<a href="https://www.linkedin.com/in/jada-lee-4a0690125/"
+  target="_blank"><img src="resources/mbj3.jpg" image="image" length="500px" width="300px"></a>
+  <div class="overlay">
+    <div class="text">From Edina, Minnesota. Will be attending Harvard this fall!</div>
+  </div>
+</div>
         <p>Jada Lee</p>
     Back End Developer</center>
     </div>
@@ -66,8 +118,6 @@
 </div>
 <br>
 <br>
-
-
 
 
 </div>
@@ -79,7 +129,7 @@
      <li><a href="/make_comment">Discussion</a> </li>
      <li><a href="/search_page">Search Page</a></li>
      <li><a href="/profile_page">Profile Page</a></li>
-     <li><a href="/make_profile">Make Profile</a></li>
+     <li><a href="/make_profile">Edit Profile</a></li>
      <li><a href="/about">About</a></li>
    </ul>
    <button class="sidebarBtn">
