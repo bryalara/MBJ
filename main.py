@@ -189,6 +189,12 @@ class ProfilePage(webapp2.RequestHandler):
         }
         self.response.out.write(template.render(my_vars))
 
+class About(webapp2.RequestHandler):
+    def get(self):
+        template= env.get_template('about.html')
+        self.response.out.write(template.render())
+
+
 
 app = webapp2.WSGIApplication([
     ('/', LoginPage),
@@ -196,5 +202,6 @@ app = webapp2.WSGIApplication([
     ('/make_comment', MakeComment),
     ('/main_page', MainPage),
     ('/search_page', SearchPage),
-    ('/profile_page', ProfilePage)
+    ('/profile_page', ProfilePage),
+    ('/about', About)
 ], debug=True)
