@@ -34,7 +34,7 @@ class LoginPage(webapp2.RequestHandler):
         if cur_user:
             log_url = users.create_logout_url('/')
         else:
-            log_url = users.create_login_url('/main_page')
+            log_url = users.create_login_url('/make_profile')
 
         template = env.get_template('login.html')
         my_vars = {
