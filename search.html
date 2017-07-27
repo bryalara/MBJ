@@ -95,20 +95,20 @@ button:hover, a:hover {
   </div>
   <div class = "boxes">
     {% for result in result_list %}
-      <div class="card">
-        <img src={{pic}} alt="John" style="width:100%">
-        <div class="container">
-          <h2><center><a href = "/go_to_profile">{{result.name}}</a></center></h2>
-          <p>{{result.objective}}</p>
-          <p>{{result.career}}</p>
-          <p>{{result.education}}</p>
-          <a class="link" href="#"><i class="fa fa-dribbble"></i></a>
-          <a class="link" href="#"><i class="fa fa-twitter"></i></a>
-          <a class="link" href="#"><i class="fa fa-linkedin"></i></a>
-          <a class="link" href="#"><i class="fa fa-facebook"></i></a>
-          <p><button>Contact</button></p>
-        </div>
-      </div>
+          <div class="card">
+            <img src={{pic}} alt="John" style="width:100%">
+            <div class="container">
+              <h2><center><a href = "/profile_page?id={{result.key.urlsafe()}}">{{result.name}}</a></center></h2>
+              <p>{{result.objective}}</p>
+              <p>{{result.career}}</p>
+              <p>{{result.education}}</p>
+              <a class="link" href="#"><i class="fa fa-dribbble"></i></a>
+              <a class="link" href="#"><i class="fa fa-twitter"></i></a>
+              <a class="link" href="#"><i class="fa fa-linkedin"></i></a>
+              <a class="link" href="#"><i class="fa fa-facebook"></i></a>
+              <p><button>Contact</button></p>
+            </div>
+          </div>
     {% endfor %}
       </div>
 

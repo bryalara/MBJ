@@ -178,9 +178,12 @@ class MainPage(webapp2.RequestHandler):
 
 class ProfilePage(webapp2.RequestHandler):
     def get(self):
-        user = users.get_current_user()
-        profile_key = ndb.Key('Profile', user.nickname()) #.nickname returns the email
-        profile = profile_key.get()
+        name_key = ndb.Key(urlsafe=self.request.get("id"))
+        profile = name_key.get()
+        if not name_key:
+            user = users.get_current_user()
+            profile_key = ndb.Key('Profile', user.nickname()) #.nickname returns the email
+            profile = profile_key.get()
         log_url = users.create_logout_url('/')
         if profile and profile.pic: #green part is the url. nect part is the data for the iamge.
             #binascii is a library. b2a converts the binary string into a base 64 string. stikcing onto url with the profile pic data
@@ -213,18 +216,12 @@ class CompSci(webapp2.RequestHandler):
 
 class GoToProfile(webapp2.RequestHandler):
     def get(self):
-        #HOW TO LINK A NAME TO ITS PROFILE???
         #jquery is for animation, actions, hover. Javascript is more of... developer tools
-        user = users.get_current_user()
-        profile_key = ndb.Key('Profile', user.nickname()) #.nickname returns the email
+        user = self.request.get("name")
+        if not username:
+            user = users.get_current_user()
+        profile_key = ndb.Key('Profile', user) #.nickname returns the email
         profile = profile_key.get() #getting the profile
-        query = profile.query() #accessing the database for a profile
-        result_list = query.fetch() #creating a list of all the profiles in the database
-
-        keys = []
-        pics = []
-        for result in result_list:
-            keys.append(result.key)
 
         if profile and profile.pic:
             pic = "data:image;base64," + binascii.b2a_base64(profile.pic)
@@ -232,10 +229,10 @@ class GoToProfile(webapp2.RequestHandler):
             pic = "../resources/handshake.jpg"
 
         log_url = users.create_logout_url('/')
-        template = env.get_template('profile.html')
+        template = env.get_template('search.html')
         my_vars = {
             'profile': profile,
-            'pic': pic,
+            'pics': pics,
             'log_url': log_url
         }
         self.response.out.write(template.render(my_vars))
