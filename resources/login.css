@@ -403,6 +403,8 @@ a {
 text-align:center;
 padding: 20px;
 margin: 20px;
+background-color: white;
+opacity: .7;
 }
 #makeProfile_header{
   position: absolute;
