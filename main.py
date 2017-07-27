@@ -242,6 +242,92 @@ class CompSci(webapp2.RequestHandler):
         }
         self.response.out.write(template.render(my_vars))
 
+class MakeCompSci(webapp2.RequestHandler):
+    def get(self):
+        name = ""
+        comment = ""
+        created_at = ""
+
+        query = Comment.query()
+        comment_list = query.fetch()
+
+        user = users.get_current_user()
+        profile_key = ndb.Key('Profile', user.nickname()) #.nickname returns the email
+        profile = profile_key.get()
+
+        comment_list.sort(comment_sort_function)
+        log_url = users.create_logout_url('/')
+        template = env.get_template('cs_discussion.html')
+        my_vars = {
+            'name': name,
+            'comment': comment,
+            'comment_list': comment_list,
+            'log_url': log_url,
+            'profile': profile
+        }
+        self.response.out.write(template.render(my_vars))
+
+    def post(self):
+        user = users.get_current_user()
+        comment_key = ndb.Key('Comment', self.request.get('comment')+str(datetime.datetime.now()))
+        comment = comment_key.get()
+
+        profile_key = ndb.Key('Profile', user.nickname())
+        profile = profile_key.get()
+
+        if not comment:
+            comment = Comment(
+                name = self.request.get('name'),
+                comment = self.request.get('comment'),
+                created_at = datetime.datetime.now(),
+                profile_key = profile.key)
+        comment.key = comment_key
+        comment.put()
+        self.redirect('/make_comp_sci')
+
+class MakeWomen(webapp2.RequestHandler):
+    def get(self):
+        name = ""
+        comment = ""
+        created_at = ""
+
+        query = Comment.query()
+        comment_list = query.fetch()
+
+        user = users.get_current_user()
+        profile_key = ndb.Key('Profile', user.nickname()) #.nickname returns the email
+        profile = profile_key.get()
+
+        comment_list.sort(comment_sort_function)
+        log_url = users.create_logout_url('/')
+        template = env.get_template('women_discussion.html')
+        my_vars = {
+            'name': name,
+            'comment': comment,
+            'comment_list': comment_list,
+            'log_url': log_url,
+            'profile': profile
+        }
+        self.response.out.write(template.render(my_vars))
+
+    def post(self):
+        user = users.get_current_user()
+        comment_key = ndb.Key('Comment', self.request.get('comment')+str(datetime.datetime.now()))
+        comment = comment_key.get()
+
+        profile_key = ndb.Key('Profile', user.nickname())
+        profile = profile_key.get()
+
+        if not comment:
+            comment = Comment(
+                name = self.request.get('name'),
+                comment = self.request.get('comment'),
+                created_at = datetime.datetime.now(),
+                profile_key = profile.key)
+        comment.key = comment_key
+        comment.put()
+        self.redirect('/make_women')
+
 
 app = webapp2.WSGIApplication([
     ('/', LoginPage),
@@ -252,5 +338,7 @@ app = webapp2.WSGIApplication([
     ('/profile_page', ProfilePage),
     ('/about', About),
     ('/women', Women),
-    ('/cs', CompSci)
+    ('/cs', CompSci),
+    ('/make_comp_sci', MakeCompSci),
+    ('/make_women', MakeWomen)
 ], debug=True)
