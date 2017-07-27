@@ -46,7 +46,11 @@
   </div>
     <center>
     {% for result in result_list %}
-      <p class="searchPeople">{{result.name}}</p>
+      <p><img src={{result.pic}}><br>
+      <class="searchPeople"><a href="/profile_page">{{result.name}}</a><br>
+      <class="searchPeople">{{result.education}}<br>
+      <class="searchPeople">{{result.objective}}<br>
+      <class="searchPeople">{{result.career}}</p>
     {% endfor %}
     </center>
     <div id="logoM">
