@@ -34,11 +34,11 @@
   <br><div id = "cs_header">Computer Science</div>
   <a href='/make_comment'>Back to Discussions</a>
 
-  <center><form method= "post" action="/make_comment">
+  <form method= "post" action="/make_comment">
 <p>Enter your name: <input type="text" name="name"/></input></p>
 <p>Start a discussion: <input type="text" name="comment"/></input></p>
 <input type="submit" value= "Post Discussion"></input>
-      </form></center>
+      </form>
     <div class="posts"
   {% for com in comment_list %}
     <p>Name: {{ com.name}}</p>

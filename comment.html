@@ -35,16 +35,16 @@
   </div>
   <br><div id = "discussion_header">Discussion</div>
 
-  <center><div id= "header"><a href= "/women"> <span class="headerColor">Talk to women in tech!</span></a>
+  <div id= "header"><a href= "/women"> <span class="headerColor">Talk to women in tech!</span></a>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <a href= "/cs"> <span class="headerColor">Curious about Computer Science?</span></a>
-</div></center>
+</div>
 
-  <center><form method= "post" action="/make_comment">
+  <form method= "post" action="/make_comment">
 <p>Enter your name: <input type="text" name="name"/></input></p>
 <p>Start a discussion: <input type="text" name="comment"/></input></p>
 <input type="submit" value= "Post Discussion"></input>
-      </form></center>
+      </form>
     <div class="posts"
   {% for com in comment_list %}
     <h2><b>{{com.name}}</b></h2>
