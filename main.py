@@ -178,9 +178,10 @@ class MainPage(webapp2.RequestHandler):
 
 class ProfilePage(webapp2.RequestHandler):
     def get(self):
-        name_key = ndb.Key(urlsafe=self.request.get("id"))
-        profile = name_key.get()
-        if not name_key:
+        if self.request.get("id"):
+            name_key = ndb.Key(urlsafe=self.request.get("id"))
+            profile = name_key.get()
+        else:
             user = users.get_current_user()
             profile_key = ndb.Key('Profile', user.nickname()) #.nickname returns the email
             profile = profile_key.get()
