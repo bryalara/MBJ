@@ -141,6 +141,21 @@ opacity: 0.8;
   font-size: 500%;
 }
 
+#about_header{
+  position: relative;
+  left: 0px;
+  top: 0px;
+  border-bottom-right-radius: 100px;
+  border-top-right-radius: 100px;
+  background: #D4F6D6;
+  padding: 15px;
+  width: 250px;
+  height: 100px;
+  font-family: 'Rubiks', sans-serif;
+  text-align: left;
+  font-size: 500%;
+}
+
 #trend_box{
   box-shadow: 5px 5px 50px #D4F6D6;
   border-radius: 25px;
