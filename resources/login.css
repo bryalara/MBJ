@@ -244,8 +244,7 @@ ul li a{
   width: 300px;
 }
 #banner{
-  position: absolute;
-  left: 10%;
+  position: relative;
   bottom: 0px;
 }
 
@@ -282,11 +281,11 @@ ul li a{
   opacity: .9;
   left: 0;
   right: 0;
-  top:-10px;
+  top:0px;
   margin-left: auto;
-  margin-right: 650px;
-  width: 140px; /* Need a specific value to work */
-  height: 105px;
+  margin-right: 690px;
+  width: 65px; /* Need a specific value to work */
+  height: 50px;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
 }
@@ -327,7 +326,6 @@ margin: 20px;
   font-family: 'Rubiks', sans-serif;
   text-align: left;
   font-size: 500%;
-  opacity: .8;
 }
 #makeProfile_header1{
   position: absolute;
@@ -342,5 +340,4 @@ margin: 20px;
   font-family: 'Rubiks', sans-serif;
   text-align: left;
   font-size: 500%;
-  opacity: .95;
 }
