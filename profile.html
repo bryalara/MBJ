@@ -59,8 +59,11 @@ button:hover, a:hover {
     </script>
   </head>
   <body>
-    <div id="logo">
-    <img src="resources/big_logo.png" height=120px>
+    <div id="userWelcome">
+      <p>Hello, {{profile.name}}</p>
+    </div>
+    <div id="logoMP">
+    <img src="resources/big_logo.png" height=55px>
     </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div id="logoutBtn">
@@ -90,7 +93,8 @@ button:hover, a:hover {
          <li><a href="/profile_page">Profile</a> </li>
          <li><a href="/make_comment">Discussion</a> </li>
          <li><a href="/search_page">Search Page</a></li>
-         <li><a href="/make_profile">Edit Profile</a></li>
+         <li><a href="/make_profile">Make Profile</a></li>
+         <li><a href="/about">About</a></li>
        </ul>
        <button class="sidebarBtn">
          <span> </span>

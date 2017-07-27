@@ -110,7 +110,7 @@ class MakeProfile(webapp2.RequestHandler):
                 pic = self.request.get('pic'))
         profile.key = profile_key
         profile.put()
-        self.redirect('/make_profile')
+        self.redirect('/profile_page')
 
 def timedelta_to_microtime(td):
     return td.microseconds + (td.seconds + td.days * 86400) * 1000000

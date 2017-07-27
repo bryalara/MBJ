@@ -18,13 +18,16 @@
          </script>
 </head>
 <body>
+  <div id="userWelcome">
+    <p>Hello random stranger!</p>
+  </div>
   <div id="logoutBtn">
     <center>
     <p> <a href="{{log_url}}">Logout</a></p>
     </center>
   </div>
   <div id="logoMP">
-  <img src="resources/big_logo.png" height=120px>
+  <img src="resources/big_logo.png" height=55px>
   </div>
   <center>
   {% for profile in profiles %}
@@ -32,8 +35,9 @@
   {% endfor %}
 
   {{cur_user}}
+  <h2 id="makeProfile_header">Make</h2><h2 id="makeProfile_header1">Profile</h2>
   <div class="profileInfo">
-  <form method="post" action="" enctype = "multipart/form-data">  <!-- if the method is a get, shows up in URL. post posts to the database, in this case -->
+  <form method="post" action='/make_profile' enctype = "multipart/form-data">  <!-- if the method is a get, shows up in URL. post posts to the database, in this case -->
     <h4>Name:<input type='text' name='name'></h4>
     <h4>Education:<input type='text' name='education'></h4>
     <h4>Objective:<input type='text' name='objective'></h4>
@@ -43,7 +47,11 @@
   </form>
   </div>
   </center>
-
+<center>
+  <div id="banner">
+    <img src="resources/banner.png" width=1000px>
+  </div>
+</center>
   <div class="sidebar">
      <ul>
        <li><a href="/">Home(Login Page)</a> </li>
@@ -52,13 +60,11 @@
        <li><a href="/make_comment">Discussion</a> </li>
        <li><a href="/search_page">Search Page</a></li>
        <li><a href="/make_profile">Edit Profile</a></li>
+       <li><a href="/about">About</a></li>
      </ul>
      <button class="sidebarBtn">
        <span> </span>
      </button>
-  </div>
-  <div id="banner">
-    <img src="resources/banner.png" width=1100px>
   </div>
 </body>
 </html>
