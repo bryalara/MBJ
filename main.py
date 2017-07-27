@@ -230,7 +230,7 @@ class CompSci(webapp2.RequestHandler):
         user = users.get_current_user()
         profile_key = ndb.Key('Profile', user.nickname()) #.nickname returns the email
         profile = profile_key.get()
-        template= env.get_template('women_discussion.html')
+        template= env.get_template('cs_discussion.html')
         my_vars = {
             'profile': profile
         }
