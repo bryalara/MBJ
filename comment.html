@@ -6,7 +6,9 @@
   <link rel="stylesheet"
          href="https://fonts.googleapis.com/css?family=Rubik">
   <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+  <script src="resources/comment.js"></script>
   <script type='text/javascript '>
+
     $(document).ready(function(){
       $('.sidebarBtn').click(function(){
       $('.sidebar').toggleClass('active');
@@ -25,8 +27,12 @@
     </center>
   </div>
   <br><center><font size="8">DISCUSSION</font></center>
-  <br> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <a href="/women">Talk to women in tech!</a> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-  <a href="/cs">Curious about Computer Science?</a>
+
+  <center><div id= "header"><a href= "/women"> <span class="headerColor">Talk to women in tech!</span></a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href= "/cs"> <span class="headerColor">Curious about Computer Science?</span></a>
+</div></center>
+
   <center><form method= "post" action="/make_comment">
 <p>Enter your name: <input type="text" name="name"/></input></p>
 <p>Start a discussion: <input type="text" name="comment"/></input></p>

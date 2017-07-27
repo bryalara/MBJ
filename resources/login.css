@@ -288,3 +288,27 @@ ul li a{
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
 }
+#header {
+  color: white;
+  text-align: center;
+  font-size: 20px;
+  margin: 10px;
+  background-color: #D4F6D6;
+  text-align: center;
+  padding: 10px;
+}
+
+a {
+  color: #5B954B;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-around;
+}
+
+.about {
+text-align:center;
+padding: 20px;
+margin: 20px;
+}
