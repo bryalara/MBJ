@@ -50,11 +50,11 @@ opacity: 0.8;
   right: 0;
 }
 #trending_header{
-  box-shadow: 5px 5px 5px grey;
-  border-radius: 25px;
-  background: #D4F6D6;
+  position: relative;
+  left: 170px;
+  background: blue;
   padding: 20px;
-  width: 800px;
+  width: 400px;
   height: 80px;
   font-family: 'Poppins', sans-serif;
   text-align: center;
@@ -213,7 +213,7 @@ ul li a{
 #userWelcome{
   position: relative;
   left: 50px;
-  background-color: #D4F6D6;
+  background-color: white;
   padding: 1px;
   height: 48px;
   opacity: .9;
