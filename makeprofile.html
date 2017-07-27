@@ -32,6 +32,7 @@
   {% endfor %}
 
   {{cur_user}}
+  <h2 id="makeProfile_header">Edit</h2><h2 id="makeProfile_header1">Profile</h2>
   <div class="profileInfo">
   <form method="post" action="" enctype = "multipart/form-data">  <!-- if the method is a get, shows up in URL. post posts to the database, in this case -->
     <h4>Name:<input type='text' name='name'></h4>
@@ -44,6 +45,9 @@
   </div>
   </center>
 
+  <div id="banner">
+    <img src="resources/banner.png" width=1100px>
+  </div>
   <div class="sidebar">
      <ul>
        <li><a href="/">Home(Login Page)</a> </li>
@@ -52,13 +56,11 @@
        <li><a href="/make_comment">Discussion</a> </li>
        <li><a href="/search_page">Search Page</a></li>
        <li><a href="/make_profile">Edit Profile</a></li>
+       <li><a href="/about">About</a></li>
      </ul>
      <button class="sidebarBtn">
        <span> </span>
      </button>
-  </div>
-  <div id="banner">
-    <img src="resources/banner.png" width=1100px>
   </div>
 </body>
 </html>

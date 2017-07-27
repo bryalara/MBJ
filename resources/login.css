@@ -59,9 +59,10 @@ opacity: 0.8;
   padding: 15px;
   width: 400px;
   height: 100px;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Rubiks', sans-serif;
   text-align: left;
   font-size: 500%;
+  opacity: .8;
 }
 
 #trend_box{
@@ -75,6 +76,7 @@ opacity: 0.8;
   font-family: 'Rubik', sans-serif;
   text-align: center;
   font-size: 100%;
+  opacity: .9;
 }
 #creators{
   position: absolute;
@@ -311,4 +313,34 @@ a {
 text-align:center;
 padding: 20px;
 margin: 20px;
+}
+#makeProfile_header{
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  border-bottom-right-radius: 100px;
+  border-top-right-radius: 100px;
+  background: 	#D4F6D6;
+  padding: 15px;
+  width: 200px;
+  height: 100px;
+  font-family: 'Rubiks', sans-serif;
+  text-align: left;
+  font-size: 500%;
+  opacity: .8;
+}
+#makeProfile_header1{
+  position: absolute;
+  left: 0px;
+  top: 110px;
+  border-bottom-right-radius: 100px;
+  border-top-right-radius: 100px;
+  background: 	#D4F6D6;
+  padding: 15px;
+  width: 300px;
+  height: 100px;
+  font-family: 'Rubiks', sans-serif;
+  text-align: left;
+  font-size: 500%;
+  opacity: .95;
 }
