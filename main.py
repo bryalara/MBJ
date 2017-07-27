@@ -211,8 +211,14 @@ class ProfilePage(webapp2.RequestHandler):
 
 class About(webapp2.RequestHandler):
     def get(self):
+        user = users.get_current_user()
+        profile_key = ndb.Key('Profile', user.nickname()) #.nickname returns the email
+        profile = profile_key.get()
         template= env.get_template('about.html')
-        self.response.out.write(template.render())
+        my_vars = {
+            'profile': profile
+        }
+        self.response.out.write(template.render(my_vars))
 
 class Women(webapp2.RequestHandler):
     def get(self):
