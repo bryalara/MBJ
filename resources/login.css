@@ -284,3 +284,10 @@ ul li a{
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
 }
+
+.flex{
+    display:flex;
+    justify-content: space-around;
+    height: 100%;
+
+}
