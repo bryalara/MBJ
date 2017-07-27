@@ -19,7 +19,7 @@
 </head>
 <body>
   <div id="userWelcome">
-    <p>Hello random stranger!</p>
+    <p> Hello random stranger!</p>
   </div>
   <div id="logoutBtn">
     <center>
@@ -35,7 +35,9 @@
   {% endfor %}
 
   {{cur_user}}
-  <h2 id="makeProfile_header">Make</h2><h2 id="makeProfile_header1">Profile</h2>
+  <p id="makeProfile_header">Make Profile</p>
+  <br>
+  <br><br><br><br>
   <div class="profileInfo">
   <form method="post" action='/make_profile' enctype = "multipart/form-data">  <!-- if the method is a get, shows up in URL. post posts to the database, in this case -->
     <h4>Name:<input type='text' name='name'></h4>
@@ -56,11 +58,11 @@
      <ul>
        <li><a href="/">Home(Login Page)</a> </li>
        <li><a href="/main_page">Home(Main Page)</a> </li>
-       <li><a href="/profile_page">Profile</a> </li>
-       <li><a href="/make_comment">Discussion</a> </li>
-       <li><a href="/search_page">Search Page</a></li>
-       <li><a href="/make_profile">Edit Profile</a></li>
-       <li><a href="/about">About</a></li>
+       <li><a href="/about">About Us</a></li>
+       <li><a href="/make_comment">Discussion Boards</a> </li>
+       <li><a href="/search_page">Search</a></li>
+       <li><a href="/profile_page">Your Profile</a> </li>
+       <li><a href="/make_profile">Make Profile</a></li>
      </ul>
      <button class="sidebarBtn">
        <span> </span>
