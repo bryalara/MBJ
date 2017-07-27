@@ -1,5 +1,54 @@
 <!DOCTYPE html>
 <html>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.boxes {
+  margin-top: 100px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+}
+
+.container {
+    padding: 50px;
+}
+
+.title {
+    color: grey;
+    font-size: 18px;
+}
+
+button {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+}
+
+.link {
+    text-decoration: none;
+    font-size: 22px;
+    color: black;
+}
+
+button:hover, a:hover {
+    opacity: 0.7;
+}
+
+</style>
 <head>
   <link rel="stylesheet" href="resources/login.css">
   <link rel="stylesheet"
@@ -44,15 +93,25 @@
       <h3><input id="searchBar" placeholder="" autocomplete="off" maxlength="25"  value="Search name..." type ='text' name ='name' onmousedown="active()" onblur="inactive()"></input><input type="submit" id="searchBtn" value='     '></h3>
     </form>
   </div>
-    <center>
+  <div class = "boxes">
     {% for result in result_list %}
-      <p><img {{result.pic}}><br><!-- HOW TO PUT PICTURE IN HTML -->
-      <class="searchPeople"><a href="/profile_page">{{result.name}}</a><br> <!--if statement checking name and linking-->
-      <class="searchPeople">{{result.education}}<br>
-      <class="searchPeople">{{result.objective}}<br>
-      <class="searchPeople">{{result.career}}</p>
+      <div class="card">
+        <img src={{pic}} alt="John" style="width:100%">
+        <div class="container">
+          <h2><center><a href = "/go_to_profile">{{result.name}}</a></center></h2>
+          <p>{{result.objective}}</p>
+          <p>{{result.career}}</p>
+          <p>{{result.education}}</p>
+          <a class="link" href="#"><i class="fa fa-dribbble"></i></a>
+          <a class="link" href="#"><i class="fa fa-twitter"></i></a>
+          <a class="link" href="#"><i class="fa fa-linkedin"></i></a>
+          <a class="link" href="#"><i class="fa fa-facebook"></i></a>
+          <p><button>Contact</button></p>
+        </div>
+      </div>
     {% endfor %}
-    </center>
+      </div>
+
     <div id="logoM">
     <img src="resources/big_logo.png" height=120px>
     </div>

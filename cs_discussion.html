@@ -1,8 +1,60 @@
-<!DOCTYPE html>
 <html>
-  <head><title>Results</title></head>
-    <body>
-      <li>{{interesting.name}}</li>
-    </body>
-    welcome to the results page
+<head>
+  <link rel="stylesheet" href="resources/login.css">
+  <link rel="stylesheet"
+         href="https://fonts.googleapis.com/css?family=Poppins">
+  <link rel="stylesheet"
+         href="https://fonts.googleapis.com/css?family=Rubik">
+  <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+  <script type='text/javascript '>
+    $(document).ready(function(){
+      $('.sidebarBtn').click(function(){
+      $('.sidebar').toggleClass('active');
+      $('.sidebarBtn').toggleClass('toggle');
+       })
+     })
+  </script>
+</head>
+<body>
+  <div id="logo">
+  <img src="resources/big_logo.png" height=120px>
+  </div>
+  <div id="logoutBtn">
+    <center>
+    <p> <a href="{{log_url}}">Logout</a></p>
+    </center>
+  </div>
+  <br><center><font size="8">COMPUTER SCIENCE</font></center>
+  <a href='/make_comment'>Back to Discussions</a>
+
+  <center><form method= "post" action="/make_comment">
+<p>Enter your name: <input type="text" name="name"/></input></p>
+<p>Start a discussion: <input type="text" name="comment"/></input></p>
+<input type="submit" value= "Post Discussion"></input>
+      </form></center>
+    <div class="posts"
+  {% for com in comment_list %}
+    <p>Name: {{ com.name}}</p>
+    <p>Comment: {{com.comment}}</p>
+    <p>Time:{{com.created_at}}<p>
+    <hr>
+  {% endfor %}
+</div>
+
+</div>
+<div class="sidebar">
+   <ul>
+     <li><a href="/">Home(Login Page)</a> </li>
+     <li><a href="/main_page">Home(Main Page)</a> </li>
+     <li><a href="/profile_page">Profile</a> </li>
+     <li><a href="/make_comment">Discussion</a> </li>
+     <li><a href="/search_page">Search Page</a></li>
+     <li><a href="/profile_page">Profile Page</a></li>
+     <li><a href="/make_profile">Edit Profile</a></li>
+   </ul>
+   <button class="sidebarBtn">
+     <span> </span>
+   </button>
+
+</body>
 </html>
