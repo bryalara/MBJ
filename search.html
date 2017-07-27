@@ -46,8 +46,8 @@
   </div>
     <center>
     {% for result in result_list %}
-      <p><img src={{result.pic}}><br>
-      <class="searchPeople"><a href="/profile_page">{{result.name}}</a><br>
+      <p><img {{result.pic}}><br><!-- HOW TO PUT PICTURE IN HTML -->
+      <class="searchPeople"><a href="/profile_page">{{result.name}}</a><br> <!--if statement checking name and linking-->
       <class="searchPeople">{{result.education}}<br>
       <class="searchPeople">{{result.objective}}<br>
       <class="searchPeople">{{result.career}}</p>
