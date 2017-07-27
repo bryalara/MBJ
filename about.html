@@ -57,8 +57,15 @@
 </style>
 </head>
 <body>
-  <div id="logo">
-  <center><img src="resources/big_logo.png" height=120px></center>
+  <div id="userWelcome">
+    {% if profile %}
+    <p> Hello, {{profile.name}}</p>
+    {% else %}
+    <p> Hello, random stranger!</p>
+    {% endif %}
+  </div>
+  <div id="logoMP">
+  <center><img src="resources/big_logo.png" height=55px></center>
 </div>
   <div id="logoutBtn">
     <center>
@@ -126,12 +133,11 @@
    <ul>
      <li><a href="/">Home(Login Page)</a> </li>
      <li><a href="/main_page">Home(Main Page)</a> </li>
-     <li><a href="/profile_page">Profile</a> </li>
-     <li><a href="/make_comment">Discussion</a> </li>
-     <li><a href="/search_page">Search Page</a></li>
-     <li><a href="/profile_page">Profile Page</a></li>
-     <li><a href="/make_profile">Edit Profile</a></li>
-     <li><a href="/about">About</a></li>
+     <li><a href="/about">About Us</a></li>
+     <li><a href="/make_comment">Discussion Boards</a> </li>
+     <li><a href="/search_page">Search</a></li>
+     <li><a href="/profile_page">Your Profile</a> </li>
+     <li><a href="/make_profile">Make Profile</a></li>
    </ul>
    <button class="sidebarBtn">
      <span> </span>
