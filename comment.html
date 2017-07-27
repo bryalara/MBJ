@@ -40,11 +40,11 @@
   <a href= "/cs"><span class="headerColor">Curious about Computer Science?</span></a>
 </div>
 
-  <form method= "post" action="/make_comment">
+  <center><form method= "post" action="/make_comment">
 <p>Enter your name: <input type="text" name="name"/></input></p>
 <p>Start a discussion: <input type="text" name="comment"/></input></p>
 <input type="submit" value= "Post Discussion"></input>
-      </form>
+      </form></center>
     <div class="posts"
   {% for com in comment_list %}
     <h2><b>{{com.name}}</b></h2>
