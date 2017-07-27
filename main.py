@@ -25,6 +25,7 @@ class Comment(ndb.Model):
     name= ndb.StringProperty()
     comment = ndb.StringProperty()
     profile_key = ndb.KeyProperty(Profile)
+    created_at = ndb.DateTimeProperty(auto_now=True)
 
 class LoginPage(webapp2.RequestHandler):
     def get(self):
@@ -68,7 +69,7 @@ class SearchPage(webapp2.RequestHandler):
         my_vars = {
             'result_list': result_list,
             'log_url': log_url,
-            
+
         }
         self.response.out.write(template.render(my_vars)) #make the answers show up on results.html
 
@@ -106,12 +107,27 @@ class MakeProfile(webapp2.RequestHandler):
         profile.put()
         self.redirect('/make_profile')
 
+def timedelta_to_microtime(td):
+    return td.microseconds + (td.seconds + td.days * 86400) * 1000000
+
+def comment_sort_function(a, b):
+    ca = a.created_at
+    if not ca:
+        return 1
+    cb = b.created_at
+    if not cb:
+        return -1
+
+    return timedelta_to_microtime(a.created_at - b.created_at)
+
 class MakeComment(webapp2.RequestHandler):
     def get(self):
         name = ""
         comment = ""
+        created_at = ""
         query = Comment.query()
         comment_list = query.fetch()
+        comment_list.sort(comment_sort_function)
         log_url = users.create_logout_url('/')
         template = env.get_template('comment.html')
         my_vars = {
@@ -134,6 +150,7 @@ class MakeComment(webapp2.RequestHandler):
             comment = Comment(
                 name = self.request.get('name'),
                 comment = self.request.get('comment'),
+                created_at = datetime.datetime.now(),
                 profile_key = profile.key)
         comment.key = comment_key
         comment.put()
