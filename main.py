@@ -236,28 +236,6 @@ class CompSci(webapp2.RequestHandler):
         }
         self.response.out.write(template.render(my_vars))
 
-class GoToProfile(webapp2.RequestHandler):
-    def get(self):
-        #jquery is for animation, actions, hover. Javascript is more of... developer tools
-        user = self.request.get("name")
-        if not username:
-            user = users.get_current_user()
-        profile_key = ndb.Key('Profile', user) #.nickname returns the email
-        profile = profile_key.get() #getting the profile
-
-        if profile and profile.pic:
-            pic = "data:image;base64," + binascii.b2a_base64(profile.pic)
-        else:
-            pic = "../resources/handshake.jpg"
-
-        log_url = users.create_logout_url('/')
-        template = env.get_template('search.html')
-        my_vars = {
-            'profile': profile,
-            'pics': pics,
-            'log_url': log_url
-        }
-        self.response.out.write(template.render(my_vars))
 
 app = webapp2.WSGIApplication([
     ('/', LoginPage),
@@ -267,7 +245,6 @@ app = webapp2.WSGIApplication([
     ('/search_page', SearchPage),
     ('/profile_page', ProfilePage),
     ('/about', About),
-    ('/go_to_profile', GoToProfile),
     ('/women', Women),
     ('/cs', CompSci)
 ], debug=True)

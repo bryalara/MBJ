@@ -49,6 +49,22 @@ opacity: 0.8;
   top:0;
   right: 0;
 }
+
+#profile_header{
+  position: relative;
+  left: 0px;
+  top: 0px;
+  border-bottom-right-radius: 100px;
+  border-top-right-radius: 100px;
+  background: #D4F6D6;
+  padding: 15px;
+  width: 450px;
+  height: 100px;
+  font-family: 'Rubiks', sans-serif;
+  text-align: left;
+  font-size: 500%;
+}
+
 #trending_header{
   position: relative;
   left: 0px;
@@ -103,7 +119,7 @@ opacity: 0.8;
   border-top-right-radius: 100px;
   background: #D4F6D6;
   padding: 15px;
-  width: 550px;
+  width: 650px;
   height: 100px;
   font-family: 'Rubiks', sans-serif;
   text-align: left;
@@ -365,7 +381,7 @@ a {
 .flex {
   display: flex;
   justify-content: space-around;
-  
+
 }
 
 .about {
