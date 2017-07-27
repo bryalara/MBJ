@@ -60,7 +60,11 @@ button:hover, a:hover {
   </head>
   <body>
     <div id="userWelcome">
-      <p>Hello, {{profile.name}}</p>
+      {% if profile %}
+      <p> Hello, {{profile.name}}</p>
+      {% else %}
+      <p> Hello, random stranger!</p>
+      {% endif %}
     </div>
     <div id="logoMP">
     <img src="resources/big_logo.png" height=55px>

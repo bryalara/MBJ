@@ -65,6 +65,66 @@ opacity: 0.8;
   opacity: .8;
 }
 
+#discussion_header{
+  position: relative;
+  left: 0px;
+  top: 0px;
+  border-bottom-right-radius: 100px;
+  border-top-right-radius: 100px;
+  background: #D4F6D6;
+  padding: 15px;
+  width: 425px;
+  height: 100px;
+  font-family: 'Rubiks', sans-serif;
+  text-align: left;
+  font-size: 500%;
+}
+
+#women_header{
+  position: relative;
+  left: 0px;
+  top: 0px;
+  border-bottom-right-radius: 100px;
+  border-top-right-radius: 100px;
+  background: #D4F6D6;
+  padding: 15px;
+  width: 550px;
+  height: 100px;
+  font-family: 'Rubiks', sans-serif;
+  text-align: left;
+  font-size: 500%;
+}
+
+#cs_header{
+  position: relative;
+  left: 0px;
+  top: 0px;
+  border-bottom-right-radius: 100px;
+  border-top-right-radius: 100px;
+  background: #D4F6D6;
+  padding: 15px;
+  width: 550px;
+  height: 100px;
+  font-family: 'Rubiks', sans-serif;
+  text-align: left;
+  font-size: 500%;
+}
+
+#search_header{
+  position: relative;
+  left: 0px;
+  top: 0px;
+  border-bottom-right-radius: 100px;
+  border-top-right-radius: 100px;
+  background: #D4F6D6;
+  padding: 15px;
+  width: 350px;
+  height: 100px;
+  font-family: 'Rubiks', sans-serif;
+  text-align: left;
+  font-size: 500%;
+}
+
 #trend_box{
   box-shadow: 5px 5px 50px #D4F6D6;
   border-radius: 25px;
@@ -226,13 +286,12 @@ ul li a{
 }
 #logoutBtn{
   position: absolute;
-  border-top-left-radius: 10px;
+  border-top-left-radius: 9px;
   border-bottom-left-radius: 10px;
-  box-shadow: 5px 5px 5px grey;
   background-color: #89c4aa;
   opacity: .9;
   right: 0px;
-  top: 0px;
+  top: -1px;
   width: 80px;
 
 }
@@ -321,7 +380,7 @@ margin: 20px;
   border-top-right-radius: 100px;
   background: 	#D4F6D6;
   padding: 15px;
-  width: 200px;
+  width: 500px;
   height: 100px;
   font-family: 'Rubiks', sans-serif;
   text-align: left;

@@ -14,9 +14,9 @@
   <body height: 100%>
     <div id="login_header">
     {% if user %}
-        <p>Hello, {{user.nickname()}} <a href = "{{log_url}}">logout</a></p>
+        <p> Hello, {{user.nickname()}} <a href = "{{log_url}}">logout</a></p>
     {% else %}
-        <p>Hello, random person login <a href = "{{log_url}}">here!</a></p>
+        <p> Hello, random person login <a href = "{{log_url}}">here!</a></p>
     {% endif %}
     </div>
     <center>

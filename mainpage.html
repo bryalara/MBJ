@@ -21,7 +21,11 @@
   <body>
 
     <div id="userWelcome">
-      <p>Hello, {{profile.name}}</p>
+      {% if profile %}
+      <p> Hello, {{profile.name}}</p>
+      {% else %}
+      <p> Hello, random stranger!</p>
+      {% endif %}
     </div>
     <div id="logoutBtn">
       <center>
@@ -30,7 +34,7 @@
     </div>
     <hr>
     <div class="trending_feed">
-      <h2 id="trending_header">Trending</h2>
+      <p id="trending_header">Trending</p>
       <center>
       <p id="trend_box"><strong >Q:</strong> Hello</br>
       <strong>A:</strong>Hey there</p>

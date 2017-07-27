@@ -46,11 +46,15 @@ class LoginPage(webapp2.RequestHandler):
 class SearchPage(webapp2.RequestHandler):
     def get(self):
         name = ""
+        user = users.get_current_user()
+        profile_key = ndb.Key('Profile', user.nickname()) #.nickname returns the email
+        profile = profile_key.get()
         log_url = users.create_logout_url('/')
         template = env.get_template('search.html')
         my_vars = {
             'name': name,
             'log_url': log_url,
+            'profile': profile
         }
         self.response.out.write(template.render(my_vars))
     #this method needs to have a search bar in every page -> done in html file
@@ -134,6 +138,10 @@ class MakeComment(webapp2.RequestHandler):
         query = Comment.query()
         comment_list = query.fetch()
 
+        user = users.get_current_user()
+        profile_key = ndb.Key('Profile', user.nickname()) #.nickname returns the email
+        profile = profile_key.get()
+
         comment_list.sort(comment_sort_function)
         log_url = users.create_logout_url('/')
         template = env.get_template('comment.html')
@@ -142,6 +150,7 @@ class MakeComment(webapp2.RequestHandler):
             'comment': comment,
             'comment_list': comment_list,
             'log_url': log_url,
+            'profile': profile
         }
         self.response.out.write(template.render(my_vars))
 
@@ -207,13 +216,25 @@ class About(webapp2.RequestHandler):
 
 class Women(webapp2.RequestHandler):
     def get(self):
+        user = users.get_current_user()
+        profile_key = ndb.Key('Profile', user.nickname()) #.nickname returns the email
+        profile = profile_key.get()
         template= env.get_template('women_discussion.html')
-        self.response.out.write(template.render())
+        my_vars = {
+            'profile': profile
+        }
+        self.response.out.write(template.render(my_vars))
 
 class CompSci(webapp2.RequestHandler):
     def get(self):
-        template= env.get_template('cs_discussion.html')
-        self.response.out.write(template.render())
+        user = users.get_current_user()
+        profile_key = ndb.Key('Profile', user.nickname()) #.nickname returns the email
+        profile = profile_key.get()
+        template= env.get_template('women_discussion.html')
+        my_vars = {
+            'profile': profile
+        }
+        self.response.out.write(template.render(my_vars))
 
 class GoToProfile(webapp2.RequestHandler):
     def get(self):

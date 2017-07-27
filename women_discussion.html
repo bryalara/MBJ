@@ -16,16 +16,25 @@
   </script>
 </head>
 <body>
-  <div id="logo">
-  <img src="resources/big_logo.png" height=120px>
+  <div id="userWelcome">
+    {% if profile %}
+    <p> Hello, {{profile.name}}</p>
+    {% else %}
+    <p> Hello, random stranger!</p>
+    {% endif %}
+  </div>
+  <div id="logoMP">
+  <img src="resources/big_logo.png" height=55px>
   </div>
   <div id="logoutBtn">
     <center>
     <p> <a href="{{log_url}}">Logout</a></p>
     </center>
   </div>
-  <br><center><font size="8">WOMEN IN TECH</font></center>
-    <a href='/make_comment'>Back to Discussions</a>
+  <br><div id = "women_header">Women in Tech</div>
+  <center><div id= "header"><a href='/make_comment'>Back to Discussions</a> <span class="headerColor"></span></a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</div></center>
 
   <center><form method= "post" action="/make_comment">
 <p>Enter your name: <input type="text" name="name"/></input></p>
