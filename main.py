@@ -260,7 +260,6 @@ class MakeCompSci(webapp2.RequestHandler):
         profile_key = ndb.Key('Profile', user.nickname()) #.nickname returns the email
         profile = profile_key.get()
 
-        comment_list.sort(comment_sort_function)
         log_url = users.create_logout_url('/')
         template = env.get_template('cs_discussion.html')
         my_vars = {
