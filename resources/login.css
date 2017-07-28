@@ -160,13 +160,14 @@ opacity: 0.8;
   border-radius: 25px;
   background: white;
   padding: 20px;
-  margin: -80px;
+  margin: 20px;
   width: 600px;
   height: 80px;
   font-family: 'Rubik', sans-serif;
-  text-align: center;
+  text-align:left;
   font-size: 100%;
   opacity: .9;
+
 }
 #creators{
   position: absolute;
