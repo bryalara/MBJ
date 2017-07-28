@@ -73,12 +73,11 @@ opacity: 0.8;
   border-top-right-radius: 100px;
   background: #D4F6D6;
   padding: 15px;
-  width: 400px;
+  width: 360px;
   height: 100px;
   font-family: 'Rubiks', sans-serif;
   text-align: left;
   font-size: 500%;
-  opacity: .8;
 }
 
 #discussion_header{
@@ -149,7 +148,7 @@ opacity: 0.8;
   border-top-right-radius: 100px;
   background: #D4F6D6;
   padding: 15px;
-  width: 250px;
+  width: 360px;
   height: 100px;
   font-family: 'Rubiks', sans-serif;
   text-align: left;

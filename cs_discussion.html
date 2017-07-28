@@ -43,9 +43,9 @@
       </form></center>
     <div class="posts"
   {% for com in comment_list %}
-    <p>Name: {{ com.name}}</p>
-    <p>Comment: {{com.comment}}</p>
-    <p>Time:{{com.created_at}}<p>
+    <p>Name: &nbsp;{{ com.name}}</p>
+    <p>Message: &nbsp;{{com.comment}}</p>
+    <p>Time: &nbsp;{{com.created_at}}<p>
     <hr>
   {% endfor %}
 </div>

@@ -142,7 +142,6 @@ class MakeComment(webapp2.RequestHandler):
         profile_key = ndb.Key('Profile', user.nickname()) #.nickname returns the email
         profile = profile_key.get()
 
-        comment_list.sort(comment_sort_function)
         log_url = users.create_logout_url('/')
         template = env.get_template('comment.html')
         my_vars = {
@@ -242,13 +241,19 @@ class CompSci(webapp2.RequestHandler):
         }
         self.response.out.write(template.render(my_vars))
 
+class CompSciComment(ndb.Model):
+    name= ndb.StringProperty()
+    comment = ndb.StringProperty()
+    profile_key = ndb.KeyProperty(Profile)
+    created_at = ndb.DateTimeProperty(auto_now=True)
+
 class MakeCompSci(webapp2.RequestHandler):
     def get(self):
         name = ""
         comment = ""
         created_at = ""
 
-        query = Comment.query()
+        query = CompSciComment.query()
         comment_list = query.fetch()
 
         user = users.get_current_user()
@@ -269,14 +274,14 @@ class MakeCompSci(webapp2.RequestHandler):
 
     def post(self):
         user = users.get_current_user()
-        comment_key = ndb.Key('Comment', self.request.get('comment')+str(datetime.datetime.now()))
+        comment_key = ndb.Key('CompSciComment', self.request.get('comment')+str(datetime.datetime.now()))
         comment = comment_key.get()
 
         profile_key = ndb.Key('Profile', user.nickname())
         profile = profile_key.get()
 
         if not comment:
-            comment = Comment(
+            comment = CompSciComment(
                 name = self.request.get('name'),
                 comment = self.request.get('comment'),
                 created_at = datetime.datetime.now(),
@@ -285,13 +290,19 @@ class MakeCompSci(webapp2.RequestHandler):
         comment.put()
         self.redirect('/make_comp_sci')
 
+class WomenComment(ndb.Model):
+    name= ndb.StringProperty()
+    comment = ndb.StringProperty()
+    profile_key = ndb.KeyProperty(Profile)
+    created_at = ndb.DateTimeProperty(auto_now=True)
+
 class MakeWomen(webapp2.RequestHandler):
     def get(self):
         name = ""
         comment = ""
         created_at = ""
 
-        query = Comment.query()
+        query = WomenComment.query()
         comment_list = query.fetch()
 
         user = users.get_current_user()
@@ -312,14 +323,14 @@ class MakeWomen(webapp2.RequestHandler):
 
     def post(self):
         user = users.get_current_user()
-        comment_key = ndb.Key('Comment', self.request.get('comment')+str(datetime.datetime.now()))
+        comment_key = ndb.Key('WomenComment', self.request.get('comment')+str(datetime.datetime.now()))
         comment = comment_key.get()
 
         profile_key = ndb.Key('Profile', user.nickname())
         profile = profile_key.get()
 
         if not comment:
-            comment = Comment(
+            comment = WomenComment(
                 name = self.request.get('name'),
                 comment = self.request.get('comment'),
                 created_at = datetime.datetime.now(),
