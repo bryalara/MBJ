@@ -169,6 +169,9 @@ opacity: 0.8;
   opacity: .9;
 
 }
+.allTrending{
+  margin: -240px;
+}
 #creators{
   position: absolute;
   bottom: 0;
